@@ -65,6 +65,11 @@ for (var i = 0; i < nombreObstacles; i++) {
 		listeCases[nombreObstacles].type = "piece";
 	}
 }
+for( x=24-3; x < 28; x++)
+	listeCases[x].type = 'casevide';
+
+for(y = 3; y < 46; y = y+7)
+	listeCases[y].type = 'casevide';
 
 listeCases[24].type = "joueur";
 
@@ -87,3 +92,24 @@ for (var i = 0; i < nombreCases; i++) {
 		}
 	})(i);
 }
+
+// Fonction qui teste la fin de partie - PARTIE HUGO
+function gameEnded(){
+	var pion = listeCases[24];// Récupération de la position du pion
+	var i = 0; // variable incrémentée pour tester si le pion pourra jouer au tour suivant.
+	
+	for( x=24-3; x < 24+4; x++){
+		if(listeCases[x].type == 'casevide')
+			i++;
+	}	
+
+	for(y = 24-(3*nombreCasesParLigne); y < 24+(3*nombreCasesParLigne)+1; y = y+nombreCasesParLigne){
+		if(listeCases[y].type == 'casevide')
+			i++;
+	}
+
+	if(i == 12){
+		alert('Le joueur 1 a gagné'); // Afficher le gagnant de la partie  
+	}
+}
+gameEnded();
