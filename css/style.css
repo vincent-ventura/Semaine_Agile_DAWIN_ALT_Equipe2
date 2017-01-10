@@ -1,0 +1,22 @@
+header {
+  width: 100%;
+  background-color: #333;
+  text-align: center;
+}
+
+h1 {
+  color: #fff;
+  padding: 20px;
+  font-size: 2em;
+  font-weight: bold;
+	font-family: sans-serif;
+}
+
+#container {
+	width: 600px;
+	margin: auto;
+}
+
+canvas {
+	margin-top: 20px;
+}
