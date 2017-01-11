@@ -6,11 +6,13 @@ var largeurPlateau = 546, // Largeur max = largeur du canvas
 	tailleCase = largeurPlateau/nombreCasesParLigne, // Taille d'une case du plateau
 	listeCases = [], // Contient un tableau avec la liste des cases
 	iJoueurs = Math.floor(nombreCases / 2), // Position des joueurs dans la liste des cases (init au milieu du plateau)
-	plateau = $("#plateau");
+	plateau = $("#plateau"),
+	isJ1Turn = true;
 
 function Joueur(nom) {
 	this.score = 0;
 	this.nom = nom;
+	this.historiqueScore = [];
 }
 
 var joueur1 = new Joueur("Joueur 1"),
@@ -234,11 +236,25 @@ function deplacerJoueurs(iCase) {
 		imgCaseDest.attr("src", img.attr("src"));
   		img.removeAttr("src");
   		imgCaseDest.show();
+			iJoueurs = iCase;
+			listeCases[iJoueurs].type = 'joueur';
+			//traiter le tour du joueur
+			if( isJ1Turn )
+			{
+				imgCaseDest.attr("src", "./img/pieuvre.png");
+				if(joueur1.score !== 0)
+					joueur1.historiqueScore.push(joueur1.score);
+				joueur1.score += listeCases[iJoueurs].valeur;
+			} else {
+				imgCaseDest.attr("src", "./img/pirate.png");
+				if(joueur2.score !== 0)
+					joueur2.historiqueScore.push(joueur2.score);
+				joueur2.score += listeCases[iJoueurs].valeur;
+			}
+			console.log("Score J1: ",joueur1.score);
+			console.log("Score J2: ",joueur2.score)
+			isJ1Turn = !isJ1Turn;
 	});
-
-	iJoueurs = iCase;
-	listeCases[iJoueurs].type = 'joueur';
-
 }
 
 function allerA( iCase ) {
