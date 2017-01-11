@@ -17,8 +17,8 @@
 		<div class="col s2 m2">
 			<div class="card"><!-- red darken-4 light-blue darken-3 -->
 				<div class="card-content white-text">
-					<img src="./img/default-user-image.png" width="70" height="70"/>
-					<p>JOUEUR 1</p>
+					<img id="imgJ1" src="./img/default-user-image.png" width="70" height="70"/>
+					<p id="nomJ1"></p>
 					<h3 id="scoreJ1">0</h3>
 					<p>Dernière pièce ramassée: </p>
 					<div class="histJ1">
@@ -36,8 +36,8 @@
 		<div class="col s2 m2">
 			<div class="card">
 				<div class="card-content white-text">
-					<img src="./img/default-user-image.png" width="70" height="70"/>
-					<p>JOUEUR 2</p>
+					<img id="imgJ2" src="./img/default-user-image.png" width="70" height="70"/>
+					<p id="nomJ2"></p>
 					<h3 id="scoreJ2">0</h3>
 					<p>Dernière pièce ramassée: </p>
 					<div class="histJ2">
@@ -47,15 +47,20 @@
 				</div>
 			</div>
 		</div>
-		<script src="./js/index.js"></script>
 
 	<!--<div id="highScores">
 	</div>-->
 
-	<script src="./js/menu.js"></script>
-  	<script src="./js/index.js"></script>
-
 	<footer>Equipe2 : Vincent C. | Valentin F. | Hugo U. | Vincent V. | Matthias R.</footer>
+
+	<script src="./js/menu.js"></script>
+	<script src="./js/global.js"></script>
+	<script src="./js/blocInit.js"></script>
+	<script src="./js/blocDeplacement.js"></script>
+	<script src="./js/blocScore.js"></script>
+	<script src="./js/blocFinJeu.js"></script>
+	<script src="./js/blocHistorique.js"></script>
+  	<script src="./js/index.js"></script>
 		
 	</div>
 </body>
