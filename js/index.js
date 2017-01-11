@@ -6,7 +6,6 @@ var largeurPlateau = 546, // Largeur max = largeur du canvas
 	tailleCase = largeurPlateau/nombreCasesParLigne, // Taille d'une case du plateau
 	listeCases = [], // Contient un tableau avec la liste des cases
 	iJoueurs = Math.floor(nombreCases / 2), // Position des joueurs dans la liste des cases (init au milieu du plateau)
-	listeCanvas = [],
 	plateau = $("#plateau");
 
 function Joueur(nom) {
@@ -33,9 +32,8 @@ function creerPlateau() {
 			listeCases[i] = {
 				numero: i,
 				type: "casevide",
-				positionX: tailleCase * colonne + 1, //la pièce a une diagonale legerement plus petit que la case
-				positionY: tailleCase * ligne + 1,
-				//pe determiner la ligne et colonne courante
+				positionX: tailleCase * colonne, //la pièce a une diagonale legerement plus petit que la case
+				positionY: tailleCase * ligne,
 			};
 		}
 		plateau.append(newLigne);
@@ -73,7 +71,7 @@ for (var i=0; i<nombreCases; i++) {
 		}
 		if (listeCases[i].type === "joueur"){
 			var joueur = new Image();
-			joueur.src = "http://zupimages.net/up/15/31/m3d1.png";
+			joueur.src = "./img/pion.png";
 			$("li#"+i).append(joueur);
 		}
 	})(i);
@@ -118,11 +116,6 @@ function deplacerJoueurs(iCase) {
 	// effectuer le déplacement
 	var img = $("li#" + iJoueurs + " img"); // on récupère l'image du joueur
 	var imgCaseDest = $("li#" + iCase + " img");
-	/*imgCaseDest.hide(600, function () {
-		imgCaseDest.attr("src", img.attr("src"));
-		img.removeAttr("src");
-		imgCaseDest.show(600);
-	});*/
 
 	if (deplacement.sens == 1)
   		img.animate({'left':deplacement.distance},'slow');
@@ -130,6 +123,12 @@ function deplacerJoueurs(iCase) {
   		console.log(deplacement.distance)
   		img.animate({'top':deplacement.distance},'slow');
   	}
+
+	imgCaseDest.hide(600, function () {
+		imgCaseDest.attr("src", img.attr("src"));
+  		img.removeAttr("src");
+  		imgCaseDest.show();
+	});
 
 	iJoueurs = iCase;
 	listeCases[iJoueurs].type = 'joueur';
