@@ -69,7 +69,7 @@ listeCases[iJoueurs].type = "joueur";
 
 
 //valeur limite en quantité des valeurs des pieces
-const limite50Qte = 5;
+const 	limite50Qte = 5;
 const	limite10Qte = 14;
 const	limite20Qte = 14;
 const	limite30Qte = 14;
@@ -252,7 +252,9 @@ function deplacerJoueurs(iCase) {
 				joueur2.score += listeCases[iJoueurs].valeur;
 			}
 			console.log("Score J1: ",joueur1.score);
-			console.log("Score J2: ",joueur2.score)
+			console.log("Score J2: ",joueur2.score);
+			$("#scoreJ1").text(joueur1.score);
+			$("#scoreJ2").text(joueur2.score);
 			isJ1Turn = !isJ1Turn;
 	});
 }

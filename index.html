@@ -8,7 +8,9 @@
 		<h1>Jeu de plateau - JavaScript</h1>
 	</header>
 
-	<div id="container" class="row" height="420">
+	<div id="menu"></div>
+
+	<div id="container" class="row" height="420" style="display:none;">
 		<div class="col s2 m2">
 			<div class="card"><!-- red darken-4 light-blue darken-3 -->
 				<div class="card-content white-text">
@@ -32,8 +34,8 @@
 			<div class="card">
 				<div class="card-content white-text">
 					<img src="./img/default-user-image.png" width="70" height="70"/>
-					<p id="scoreJ2">JOUEUR 2</p>
-					<h3>0</h3>
+					<p>JOUEUR 2</p>
+					<h3 id="scoreJ2">0</h3>
 					<p>Dernière pièce ramassée: </p>
 					<div class="histJ2">
 					</div>
@@ -47,6 +49,7 @@
 	<!--<div id="highScores">
 	</div>-->
 
+	<script src="./js/menu.js"></script>
   	<script src="./js/index.js"></script>
 
 	<footer>Equipe2 : Vincent C. | Valentin F. | Hugo U. | Vincent V. | Matthias R.</footer>
