@@ -251,11 +251,11 @@ function deplacerJoueurs(iCase) {
 					joueur2.historiqueScore.push(joueur2.score);
 				joueur2.score += listeCases[iJoueurs].valeur;
 			}
-			console.log("Score J1: ",joueur1.score);
-			console.log("Score J2: ",joueur2.score);
 			$("#scoreJ1").text(joueur1.score);
 			$("#scoreJ2").text(joueur2.score);
+			finDeJeuAtteints(isJ1Turn);
 			isJ1Turn = !isJ1Turn;
+			//verfiFinJeu();
 	});
 }
 
@@ -272,8 +272,41 @@ function positionClic( x, y ) {
 	return ligne*nombreCasesParLigne + colonne;
 }
 
+/*function verfiFinJeu(){
+	var caseDispo = false;
+    // Recuperer la position courante du pion (joueur)
+
+    var i = 0; // variable incrémentée pour tester si le pion pourra jouer au tour suivant.
+    
+    for( x=iJoueurs-3; x < iJoueurs+4; x++){
+        if(listeCases[x].type == 'casevide')
+            i++;
+    }    
+
+    for(y = iJoueurs-(3*nombreCasesParLigne); y < iJoueurs+(3*nombreCasesParLigne)+1; y = y+nombreCasesParLigne){
+        if(listeCases[y].type == 'casevide')
+            i++;
+    }
+
+    if(i == 12){
+        alert("Le joueur " + isJ1Turn ? "1" : "2" + " a gagné"); // Afficher le gagnant de la partie  
+    }
+}*/
+
 plateau.on('click', function (e) {
 	var x = e.pageX - this.offsetLeft;
 	var y = e.pageY - this.offsetTop;
 	allerA( positionClic(x, y) );
-});
+});	
+
+
+//function
+function finDeJeuAtteints (j1Turn) {
+	if (j1Turn){
+		if(joueur1.score > 500)
+			alert("Le joueur 1 a gagné"); // Afficher le gagnant de la partie  
+	} else {
+		if(joueur2.score > 500)
+			alert("Le joueur 2 a gagné"); // Afficher le gagnant de la partie  
+	}
+}
