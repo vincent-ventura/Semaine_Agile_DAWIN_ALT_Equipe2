@@ -147,32 +147,38 @@ function updateTab(tab)
 const indexLigneDuMilieu = [21, 22, 23, 25, 26, 27];
 const indexColonneDuMilieu = [3, 10, 17, 31, 38, 45];
 const indexCaseWithout100 = new Set(indexColonneDuMilieu.concat(indexLigneDuMilieu));
-
-// Il y a 49 cases, on vérifie l'type de chacune et si c'est un piece, on colore la case en gris
-//var total = 0;
-for (var i = 0; i < nombreCases; i++) {
-	(function(i) {
-		if (listeCases[i].type === "piece") {
-			listeCases[i].valeur = randomVal(!indexCaseWithout100.has(i));
-			//console.log(listeCases[i].valeur);
-			//total++;
-			var canvas = new Image();
-			canvas.src = './img/10.png';
-			canvas.addEventListener('load', function() {
-				context.drawImage(canvas, listeCases[i].positionX, listeCases[i].positionY, 58, 58);
-			}, false);
       
 // Il y a 49 cases, on vérifie l'type de chacune et si c'est une piece, on colore la case en gris
 for (var i=0; i<nombreCases; i++) {
 	(function(i) {
 		if (listeCases[i].type === "piece") {
+			listeCases[i].valeur = randomVal(!indexCaseWithout100.has(i));
 			var piece = new Image();
-			piece.src = './img/10.png';
+			switch (listeCases[i].valeur) {
+				case 10:
+					piece.src = './img/10.png';
+					break;
+				case 20:
+					piece.src = './img/20.png';
+					break;
+				case 30:
+					piece.src = './img/30.png';
+					break;
+				case 40:
+					piece.src = './img/40.png';
+					break;
+				case 50:
+					piece.src = './img/50.png';
+					break;
+				case 100:
+					piece.src = './img/100.png';
+					break;
+			}
 			$("li#"+i).append(piece);
 		}
 		if (listeCases[i].type === "joueur"){
 			var joueur = new Image();
-			joueur.src = "./img/pion.png";
+			joueur.src = "./img/pirate.png";
 			$("li#"+i).append(joueur);
 		}
 	})(i);
@@ -233,6 +239,7 @@ function deplacerJoueurs(iCase) {
 
 	iJoueurs = iCase;
 	listeCases[iJoueurs].type = 'joueur';
+
 }
 
 function allerA( iCase ) {
