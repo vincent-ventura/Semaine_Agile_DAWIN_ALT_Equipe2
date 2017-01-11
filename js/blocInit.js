@@ -22,37 +22,26 @@
 function creerPlateau() {
 	initialiserJoueurs();
 
-	for (var ligne=0; ligne<NOMBRE_CASES_PAR_LIGNE; ligne++) { // pour chaque ligne
-		var newLigne = $('<ul/>');
+	for (var ligne=0; ligne<NOMBRE_CASES_PAR_LIGNE; ligne++) {
+		var newLigne = $('<ul/>'); // on cree une nouvelle ligne
 
-		for (var colonne=0; colonne<NOMBRE_CASES_PAR_LIGNE; colonne++) { // pour chaque colonne
-			var newCase = $('<li/>');
-			i = ligne*NOMBRE_CASES_PAR_LIGNE + colonne;
-			newCase.attr("id", i);
-			newLigne.append(newCase);
+		for (var colonne=0; colonne<NOMBRE_CASES_PAR_LIGNE; colonne++) {
+			var newCase = $('<li/>'); // on cree une nouvelle case
+			i = ligne*NOMBRE_CASES_PAR_LIGNE + colonne; // on calcule son id
+			newCase.attr("id", i); // on lui attribut cette id
+			newLigne.append(newCase); // on l'integre la nouvelle case à notre ligne
 
 			// on ajoute la case courante à notre liste de cases
-			listeCases[i] = new Case(i, TAILLE_CASE*colonne, TAILLE_CASE*ligne);
+			listeCases[i] = new Case(
+				i, 
+				i !== iJoueurs ? 'piece' : 'joueur', 
+				TAILLE_CASE*colonne, 
+				TAILLE_CASE*ligne
+			);
 		}
-		plateau.append(newLigne);
+
+		plateau.append(newLigne); // on insere la nouvelleligne à notre plateau
 	}
-
-	modifierTypeCases(); // mettre à jour les attributs type des cases
-}
-
-// Fonction qui retourne un nombre aléatoire entre 0 et NOMBRE_CASES
-function randomnumber() {
-	var rand = Math.floor(Math.random() * (NOMBRE_CASES-1));
-	return rand;
-}
-
-function modifierTypeCases() {
-	for (var i=0; i<NOMBRE_CASES; i++) {
-		if(i !== iJoueurs)
-			listeCases[i].type = "piece";
-	}
-	
-	listeCases[iJoueurs].type = "joueur";
 }
 
 

@@ -1,6 +1,4 @@
 function deplacementValide(iCase) {
-	console.log(iJoueurs);
-	console.log(listeCases[iJoueurs]);
 	return (
 		listeCases[iCase].type === "piece" && // return true si la pièce de destination est une piece ET
 		( listeCases[iCase].positionX === listeCases[iJoueurs].positionX || // que la piece soit sur la meme ligne que le joueur OU
