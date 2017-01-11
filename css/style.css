@@ -1,3 +1,9 @@
+body
+{
+  margin-left: auto;
+  margin-right: auto;
+}
+
 header {
   width: 100%;
   background-color: #333;
@@ -19,4 +25,51 @@ h1 {
 
 canvas {
 	margin-top: 20px;
+}
+
+header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+footer {
+  background: #aaa;
+  color:white;
+  padding: 1em;
+  color: white;
+  clear: left;
+  text-align: center;
+  margin: 5em 0 5em 0;
+}
+.nav {background:#eee;}
+
+#highScores
+{
+  border-radius: 25px;
+  background-image : url(./img/paper.gif);
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  border: 2px solid green;
+  margin : 0 auto;
+}
+
+#highScores li
+{
+  border: 2px solid green;
+  display: inline-block;
+}
+
+#rcorners3 {
+    border-radius: 25px;
+    background: url(./img/paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
 }
