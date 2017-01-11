@@ -1,16 +1,13 @@
-// On crée les variables pour le canvas
-var canvas = document.getElementById('plateau');
-var context = canvas.getContext('2d');
-
 // On définit des variables
-var largeurPlateau = canvas.width, // Largeur max = largeur du canvas
-	hauteurPlateau = canvas.height, // Hauteur max = hauteur du canvas
+var largeurPlateau = 546, // Largeur max = largeur du canvas
+	hauteurPlateau = 546, // Hauteur max = hauteur du canvas
 	nombreCases = 49, // Le nombre de cases total est égal aux nombres de cases sur la largeur multipliés par le nombre de cases sur la hauteur
 	nombreCasesParLigne = 7, // Nombre de case pour chaque ligne du plateau
 	tailleCase = largeurPlateau/nombreCasesParLigne, // Taille d'une case du plateau
 	listeCases = [], // Contient un tableau avec la liste des cases
 	iJoueurs = Math.floor(nombreCases / 2), // Position des joueurs dans la liste des cases (init au milieu du plateau)
-	listeCanvas = [];
+	listeCanvas = [],
+	plateau = $("#plateau");
 
 function Joueur(nom) {
 	this.score = 0;
@@ -22,42 +19,30 @@ var joueur1 = new Joueur("Joueur 1"),
 
 // On créé une fonction pour crée chaque case du plateau
 function creerPlateau() {
-	context.fillStyle = "white"; // Le canvas a un fond blanc
-	context.fillRect(0, 0, largeurPlateau, hauteurPlateau); // On utilise la totalité du canvas pour créer nos cases
 
-	var colonne = 0,
-		ligne = 0; // On utilise ces variables pour changer les colonnes et lignes des différentes cases crées, on commence à 0 x 0 pour la première case
+	for (var ligne=0; ligne<nombreCasesParLigne; ligne++) { // pour chaque ligne
+		var newLigne = $('<ul/>');
 
-	// Pour chaque case du plateau :
-	for (var i = 0; i < nombreCases; i++) {
-		// On crée un carré de bordure noire de taille tailleCase*tailleCase
-		context.fillStyle = (i%2 === 0 ? 'white' : 'black');
-		context.fillRect(tailleCase * colonne, tailleCase * ligne, tailleCase, tailleCase);
+		for (var colonne=0; colonne<nombreCasesParLigne; colonne++) { // pour chaque colonne
+			var newCase = $('<li/>');
+			i = ligne*nombreCasesParLigne + colonne;
+			newCase.attr("id", i);
+			newLigne.append(newCase);
 
-		// On ajoute un objet à chaque case avec un type et les positions
-		listeCases[i] = {
-			numero: i,
-			type: "casevide",
-			positionX: tailleCase * colonne + 1, //la pièce a une diagonale legerement plus petit que la case
-			positionY: tailleCase * ligne + 1,
-			//pe determiner la ligne et colonne courante
-		};
-
-		// Après avoir créé la case, on passe à la colonne suivante
-		colonne++;
-
-		// Si on arrive à la fin de la ligne, on passe à la ligne suivante
-		if (colonne === nombreCasesParLigne) {
-			colonne = 0;
-			ligne++;
+			// On ajoute un objet à chaque case avec un type et les positions
+			listeCases[i] = {
+				numero: i,
+				type: "casevide",
+				positionX: tailleCase * colonne + 1, //la pièce a une diagonale legerement plus petit que la case
+				positionY: tailleCase * ligne + 1,
+				//pe determiner la ligne et colonne courante
+			};
 		}
+		plateau.append(newLigne);
 	}
 }
 
 creerPlateau();
-
-var nombreObstacles = listeCases.length-1, // On veut 48 obstacles sur le plateau
-	listearmes = [];
 
 // Création de la fonction qui retourne un nombre aléatoire entre 0 et 48
 function randomnumber() {
@@ -65,42 +50,36 @@ function randomnumber() {
 	return rand;
 }
 
-for (var i = 0; i < nombreObstacles; i++) {
+for (var i=0; i<nombreCases-1; i++) {
 	var numerocasealeatoire = randomnumber();
 
 	if (listeCases[numerocasealeatoire].type !== "casevide") {
 		i--;
 	} else {
 		listeCases[numerocasealeatoire].type = "piece";
-		listeCases[nombreObstacles].type = "piece";
+		listeCases[nombreCases-1].type = "piece";
 	}
 }
 
 listeCases[iJoueurs].type = "joueur";
 
 // Il y a 49 cases, on vérifie l'type de chacune et si c'est une piece, on colore la case en gris
-for (var i = 0; i < nombreCases; i++) {
+for (var i=0; i<nombreCases; i++) {
 	(function(i) {
 		if (listeCases[i].type === "piece") {
-			var canvas = new Image();
-			canvas.src = './img/10.png';
-			canvas.addEventListener('load', function() {
-				context.drawImage(canvas, listeCases[i].positionX, listeCases[i].positionY, 58, 58);
-			}, false);
-			listeCanvas[i] = canvas;
+			var piece = new Image();
+			piece.src = './img/10.png';
+			$("li#"+i).append(piece);
 		}
 		if (listeCases[i].type === "joueur"){
-			var canvas = new Image();
-			canvas.src = "http://zupimages.net/up/15/31/m3d1.png";
-			canvas.addEventListener('load', function() {
-			context.drawImage(canvas, listeCases[i].positionX, listeCases[i].positionY);
-			}, false);
-			listeCanvas[i] = canvas;
+			var joueur = new Image();
+			joueur.src = "http://zupimages.net/up/15/31/m3d1.png";
+			$("li#"+i).append(joueur);
 		}
 	})(i);
 }
 
-function deplacementValide( iCase ) {
+function deplacementValide(iCase) {
 	return ( 
 		listeCases[iCase].type === "piece" && // return true si la pièce de destination est une piece ET
 		( listeCases[iCase].positionX === listeCases[iJoueurs].positionX || // que la piece soit sur la meme ligne que le joueur OU
@@ -108,17 +87,52 @@ function deplacementValide( iCase ) {
 		); 
 }
 
+function determinerSensDeplacement(iCase) {
+	var deplacement = {
+		sens: null, // 1 horizontal, 2 vertical
+		distance: null
+	};
+	var isHorizontal = false;
+	if ( listeCases[iCase].positionY == listeCases[iJoueurs].positionY )
+		isHorizontal = true;
+
+	if (isHorizontal) {
+		deplacement.sens = 1;
+		deplacement.distance = (iCase - iJoueurs) * tailleCase;
+	}
+	else {
+		deplacement.sens = 2;
+		console.log(Math.floor(listeCases[iCase].positionX / tailleCase));
+		deplacement.distance = ( (Math.floor(listeCases[iCase].positionY / tailleCase)) - (Math.floor(listeCases[iJoueurs].positionY / tailleCase)) ) * tailleCase; 
+	}
+
+	return deplacement;
+}
+
+
 function deplacerJoueurs(iCase) {
+	var deplacement = determinerSensDeplacement(iCase); 
 	// Mettre à jour les cases
 	listeCases[iJoueurs].type = 'casevide';
-	iJoueurs = iCase;
-	listeCases[iJoueurs].type = 'joueur';
-
-	// faire disparaitre la piece située sur la case de destination
-	context.clearRect(listeCases[iCase].positionX, listeCases[iCase].positionY, tailleCase-2, tailleCase-2);
 
 	// effectuer le déplacement
+	var img = $("li#" + iJoueurs + " img"); // on récupère l'image du joueur
+	var imgCaseDest = $("li#" + iCase + " img");
+	/*imgCaseDest.hide(600, function () {
+		imgCaseDest.attr("src", img.attr("src"));
+		img.removeAttr("src");
+		imgCaseDest.show(600);
+	});*/
 
+	if (deplacement.sens == 1)
+  		img.animate({'left':deplacement.distance},'slow');
+  	else {
+  		console.log(deplacement.distance)
+  		img.animate({'top':deplacement.distance},'slow');
+  	}
+
+	iJoueurs = iCase;
+	listeCases[iJoueurs].type = 'joueur';
 }
 
 function allerA( iCase ) {
@@ -134,6 +148,8 @@ function positionClic( x, y ) {
 	return ligne*nombreCasesParLigne + colonne;
 }
 
-canvas.addEventListener('click', function (e) {
-	allerA( positionClic(e.offsetX, e.offsetY) );
+plateau.on('click', function (e) {
+	var x = e.pageX - this.offsetLeft;
+	var y = e.pageY - this.offsetTop;
+	allerA( positionClic(x, y) );
 });
