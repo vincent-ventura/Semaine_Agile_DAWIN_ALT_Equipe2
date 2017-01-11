@@ -1,19 +1,55 @@
 <head>
-  <link href="./css/style.css" type="text/css" rel="stylesheet"/>
+	<link href="./css/style.css" type="text/css" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  	<script src="./js/jquery.min.js"></script>
 </head>
 <body>
 	<header>
 		<h1>Jeu de plateau - JavaScript</h1>
 	</header>
 
-	<div id="plateau"></div>
+	<div id="container" class="row" height="420">
+		<div class="col s2 m2">
+			<div class="card"><!-- red darken-4 light-blue darken-3 -->
+				<div class="card-content white-text">
+					<img src="./img/default-user-image.png" width="70" height="70"/>
+					<p>JOUEUR 1</p>
+					<h3 id="scoreJ1">0</h3>
+					<p>Dernière pièce ramassée: </p>
+					<div class="histJ1">
+					</div>
+					<h5>COMBO</h5>
+					<h3></h3>
+				</div>
+			</div>
+		</div>
 
-  <div id="highScores">
-  </div>
+		<div class="col s3 m3">
+			<div id="plateau"></div>
+		</div>
+			
+		<div class="col s2 m2">
+			<div class="card">
+				<div class="card-content white-text">
+					<img src="./img/default-user-image.png" width="70" height="70"/>
+					<p id="scoreJ2">JOUEUR 2</p>
+					<h3>0</h3>
+					<p>Dernière pièce ramassée: </p>
+					<div class="histJ2">
+					</div>
+					<h5>COMBO</h5>
+					<h3></h3>
+				</div>
+			</div>
+		</div>
+		<script src="./js/index.js"></script>
 
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/index.js"></script>
-  
+	<!--<div id="highScores">
+	</div>-->
+
+  	<script src="./js/index.js"></script>
+
+	<footer>Equipe2 : Vincent C. | Valentin F. | Hugo U. | Vincent V. | Matthias R.</footer>
+		
+	</div>
 </body>
-<footer>Equipe2 : Vincent C. | Valentin F. | Hugo U. | Vincent V. | Matthias R.</footer>
-
