@@ -1,3 +1,9 @@
+body
+{
+  margin-left: auto;
+  margin-right: auto;
+}
+
 header {
   width: 100%;
   background-color: #333;
@@ -9,14 +15,180 @@ h1 {
   padding: 20px;
   font-size: 2em;
   font-weight: bold;
-	font-family: sans-serif;
+  font-family: sans-serif;
+}
+
+#plateau {
+  width: 546px;
+  height: 546px;
+  margin: 5px;
+  /*position: absolute;*/
+  border-collapse: 4px outset gray;
+  float: left;
+  padding-bottom: 7px 0 0 7px;
+}
+
+#plateau li {
+  width: 78;
+  height: 78;
+  color: red;
+}
+
+#plateau .label {
+    bottom: 1px;
+    color: #222222;
+    font-size: 0.7em;
+    left: 2px;
+    position: absolute;
+    z-index: 100;
+    text-shadow: -1px -1px 0px #e0e0e0;
+    filter: dropshadow(color=#e0e0e0,offx=-1,offy=-1)
+}
+#plateau ul {
+    height: 78px;
+    width: 546px;
+    position: relative;
+    background-color: rgba(255,255,255,0.5);
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+#plateau ul:first-child div:hover, #plateau ul:first-child #cover form:hover, #cover #plateau ul:first-child form:hover {
+    margin-top: 0
+}
+#plateau ul:nth-child(odd) li:nth-child(even) {
+    background-color: rgba(0,0,0,0.5)
+}
+#plateau ul:nth-child(odd) li:nth-child(even) .label {
+    color: #C0C0C0;
+    text-shadow: 1px 1px 0px #333;
+    filter: dropshadow(color=#ccc,offx=-1,offy=-1)
+}
+#plateau ul:nth-child(even) li:nth-child(odd) {
+    background-color: rgba(0,0,0,0.5)
+}
+#plateau ul:nth-child(even) li:nth-child(odd) .label {
+    color: #C0C0C0;
+    text-shadow: 1px 1px 0px #333;
+    filter: dropshadow(color=#ccc,offx=-1,offy=-1)
+}
+#plateau ul .selected {
+    border: 2px solid darkblue;
+    height: 73px;
+    width: 73px;
+    z-index: 5
+}
+#plateau ul .legal {
+    background-color: rgba(0,0,200,0.6) !important
+}
+#plateau ul .legal:hover {
+    background-color: rgba(0,100,200,0.6) !important;
+    border: 1px solid green
+}
+#plateau ul .threat {
+    background-color: rgba(200,0,0,0.6) !important
+}
+#plateau ul .attack {
+    background-color: rgba(0,200,0,0.6) !important
+}
+#plateau ul li {
+    display: inline;
+    float: left;
+    position: relative;
+    height: 75px;
+    width: 75px;
+    border: 1px solid silver;
+}
+#plateau ul li:first-child:hover {
+    margin-left: 0
+}
+#plateau ul li:not(.selected) img.active:hover {
+    border: 1px solid green;
+    left: -1px;
+    top: -1px
+}
+#plateau ul li img {
+    display: block;
+    position: relative;
+    height: 100%; 
+    width: auto;
+    text-align: center
+}
+
+/*header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}*/
+footer {
+  background: #aaa;
+  color:white;
+  padding: 1em;
+  color: white;
+  clear: left;
+  text-align: center;
+  margin: 5em 0 5em 0;
+}
+.nav {background:#eee;}
+
+#highScores
+{
+  border-radius: 25px;
+  background-image : url(./img/paper.gif);
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  border: 2px solid green;
+  margin : 0 auto;
+}
+
+#highScores li
+{
+  border: 2px solid green;
+  display: inline-block;
+}
+
+#rcorners3 {
+    border-radius: 25px;
+    background: url(./img/paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
 }
 
 #container {
-	width: 600px;
+  width: 75%;
 	margin: auto;
 }
 
-canvas {
+.col {
 	margin-top: 20px;
+}
+
+.s2{
+  width: 140px !important;
+  height: 100%;
+  padding: 0px !important;
+}
+
+.s3{
+  width: auto !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.card{
+  padding-bottom: auto;
+  margin: 0px !important;
+  background-image: url('../img/paper.png');
+}
+
+.card p, .card h3, .card h5{
+  color: #333 !important;
 }
