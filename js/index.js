@@ -11,7 +11,7 @@ var largeurPlateau = 546, // Largeur max = largeur du canvas
 function Joueur(nom) {
 	this.score = 0;
 	this.nom = nom;
-} 
+}
 
 var joueur1 = new Joueur("Joueur 1"),
 	joueur2 = new Joueur("Joueur 2");
@@ -148,24 +148,11 @@ const indexLigneDuMilieu = [21, 22, 23, 25, 26, 27];
 const indexColonneDuMilieu = [3, 10, 17, 31, 38, 45];
 const indexCaseWithout100 = new Set(indexColonneDuMilieu.concat(indexLigneDuMilieu));
 
-// Il y a 49 cases, on vérifie l'type de chacune et si c'est un piece, on colore la case en gris
-//var total = 0;
-for (var i = 0; i < nombreCases; i++) {
-	(function(i) {
-		if (listeCases[i].type === "piece") {
-			listeCases[i].valeur = randomVal(!indexCaseWithout100.has(i));
-			//console.log(listeCases[i].valeur);
-			//total++;
-			var canvas = new Image();
-			canvas.src = './img/10.png';
-			canvas.addEventListener('load', function() {
-				context.drawImage(canvas, listeCases[i].positionX, listeCases[i].positionY, 58, 58);
-			}, false);
-      
 // Il y a 49 cases, on vérifie l'type de chacune et si c'est une piece, on colore la case en gris
 for (var i=0; i<nombreCases; i++) {
 	(function(i) {
 		if (listeCases[i].type === "piece") {
+			listeCases[i].valeur = randomVal(!indexCaseWithout100.has(i));
 			var piece = new Image();
 			piece.src = './img/10.png';
 			$("li#"+i).append(piece);
@@ -179,11 +166,11 @@ for (var i=0; i<nombreCases; i++) {
 }
 
 function deplacementValide(iCase) {
-	return ( 
+	return (
 		listeCases[iCase].type === "piece" && // return true si la pièce de destination est une piece ET
 		( listeCases[iCase].positionX === listeCases[iJoueurs].positionX || // que la piece soit sur la meme ligne que le joueur OU
 			listeCases[iCase].positionY === listeCases[iJoueurs].positionY ) // que la piece soit sur la meme colonne que le joueur
-		); 
+		);
 }
 
 function determinerSensDeplacement(iCase) {
@@ -202,7 +189,7 @@ function determinerSensDeplacement(iCase) {
 	else {
 		deplacement.sens = 2;
 		console.log(Math.floor(listeCases[iCase].positionX / tailleCase));
-		deplacement.distance = ( (Math.floor(listeCases[iCase].positionY / tailleCase)) - (Math.floor(listeCases[iJoueurs].positionY / tailleCase)) ) * tailleCase; 
+		deplacement.distance = ( (Math.floor(listeCases[iCase].positionY / tailleCase)) - (Math.floor(listeCases[iJoueurs].positionY / tailleCase)) ) * tailleCase;
 	}
 
 	return deplacement;
@@ -210,7 +197,7 @@ function determinerSensDeplacement(iCase) {
 
 
 function deplacerJoueurs(iCase) {
-	var deplacement = determinerSensDeplacement(iCase); 
+	var deplacement = determinerSensDeplacement(iCase);
 	// Mettre à jour les cases
 	listeCases[iJoueurs].type = 'casevide';
 
@@ -253,4 +240,3 @@ plateau.on('click', function (e) {
 	var y = e.pageY - this.offsetTop;
 	allerA( positionClic(x, y) );
 });
-
