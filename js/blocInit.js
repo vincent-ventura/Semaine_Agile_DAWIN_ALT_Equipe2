@@ -174,6 +174,17 @@ function placerPiecesAleatoirement() {
 	}
 }
 
+function placementAleatoireDesPieces() {
+	var pieces = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+				20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+				30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+				50, 50, 50, 50, 50,
+				100];
+
+	//var 
+	var randomCase = Math.floor(Math.random() * (pieces.length-1);
+}
+
 function demarrerPartie() {
 	creerPlateau(); // creation du plateau de jeu
 	placerPiecesAleatoirement(); // placement de piece de façon aléatoire sur plateau
