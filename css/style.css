@@ -19,8 +19,6 @@ h1 {
 }
 
 #plateau {
-	width: 546px;
-  height: 546px;
 	margin: 5px;
   /*position: absolute;*/
   border-collapse: 4px outset gray;
@@ -28,9 +26,73 @@ h1 {
   padding-bottom: 7px 0 0 7px;
 }
 
+@media only screen and (min-width: 1500px){
+  #plateau
+  {
+    height: auto;
+    width: auto;
+  }
+
+  #plateau li
+  {
+    height: auto;
+    width: auto;
+  }
+
+  #plateau ul
+  {
+    width: auto;
+    height: auto;
+  }
+
+  #plateau ul li
+  {
+    height: auto;
+    width: auto;
+  }
+
+  #plateau ul li img
+  {
+    height: 70px;
+    width: 70px;
+  }
+}
+
+@media only screen and (max-width: 1500px){
+  #plateau
+  {
+    height: 280px;
+    width: 280px;
+  }
+
+  #plateau li
+  {
+    height: 78px;
+    width: 78px;
+  }
+
+  #plateau ul
+  {
+    width: 280px;
+    height: 40px;
+  }
+
+  #plateau ul li
+  {
+    height: 40px;
+    width: 40px;
+  }
+
+  #plateau ul li img
+  {
+    height: 38px;
+    width: 38px;
+  }
+}
+
 #plateau li {
-  width: 78;
-  height: 78;
+  /*width: 78;
+  height: 78;*/
   color: red;
 }
 
@@ -45,14 +107,15 @@ h1 {
     filter: dropshadow(color=#e0e0e0,offx=-1,offy=-1)
 }
 #plateau ul {
-    height: 78px;
-    width: 546px;
+    /*height: 78px;
+    width: 546px;*/
     position: relative;
     background-color: rgba(255,255,255,0.5);
     color: #222;
     margin: 0;
     padding: 0;
 }
+
 #plateau ul:first-child div:hover, #plateau ul:first-child #cover form:hover, #cover #plateau ul:first-child form:hover {
     margin-top: 0
 }
@@ -95,10 +158,11 @@ h1 {
     display: inline;
     float: left;
     position: relative;
-    height: 75px;
-    width: 75px;
+    /*height: 75px;
+    width: 75px;*/
     border: 1px solid silver;
 }
+
 #plateau ul li:first-child:hover {
     margin-left: 0
 }
@@ -110,8 +174,8 @@ h1 {
 #plateau ul li img {
     display: block;
     position: relative;
-    height: 100%;
-    width: auto;
+    /*height: 100%;
+    width: auto;*/
     text-align: center
 }
 
@@ -176,7 +240,7 @@ footer {
   margin: auto;
 }
 
-.col {
+/*.col {
   margin-top: 20px;
 }
 
@@ -190,7 +254,7 @@ footer {
   width: auto !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
-}
+}*/
 
 .card{
   padding-bottom: auto;
