@@ -198,7 +198,7 @@ footer {
 }*/
 
 .card{
-  padding-bottom: auto;
+  height: 546px;
   margin: 0px !important;
   background-image: url('../img/paper.png');
 }
