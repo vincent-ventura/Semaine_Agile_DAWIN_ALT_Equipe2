@@ -29,6 +29,8 @@ function determinerSensDeplacement(iCase) {
 
 function changerDeJoueur() {
 	isJ1Turn = !isJ1Turn;
+	verifFinJeuPlusDeCasesAccessibles();
+	
 	if (etatJeu === 0 || isJ1Turn) {
 		clicAutorise = true; // on reactive le clic après avoir changé de joueur
 	} else {
@@ -53,7 +55,7 @@ function deplacerIA(etatJeu) {
 }
 
 function choisirCaseIADebutant() {
-	
+
 }
 
 function deplacerJoueurs(iCase) {
