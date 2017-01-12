@@ -52,7 +52,7 @@ function deplacerJoueurs(iCase) {
 
 		iJoueurs = iCase;
 		listeCases[iJoueurs].type = 'joueur';
-		
+
 		if(isJ1Turn) {
 			imgCaseDest.attr("src", "./img/pieuvre.png");
 			mettreAJourScore(joueur1);

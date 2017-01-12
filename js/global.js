@@ -6,6 +6,7 @@
 function Joueur(nom) {
 	this.score = 0;
 	this.nom = nom;
+	this.seuilDeclenchementBonus = 0;
 	this.historiqueScore = [];
 }
 

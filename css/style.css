@@ -198,7 +198,7 @@ footer {
   background-image: url('../img/paper.png');
 }
 
-.card p, .card h3, .card h5{
+.card p, .card h3, .card h5, .card span{
   color: #333 !important;
 }
 
@@ -258,4 +258,20 @@ footer {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.listeP1 li, .listeP2 li
+{
+  text-align: center;
+  font-weight: bolder;
+}
+
+.bonus
+{
+  color : #ff4000;
+}
+
+.point
+{
+  color: #4d3319;
 }
