@@ -1,4 +1,4 @@
-/*** FICHIER CONTENANT TOUTES LES VARIABLES GLOBALES UTILISEES DANS PLUSIEURS BLOCS DU JEU **/
+// FICHIER REGROUPANT LES VARIABLES TRANSVESES A PLUSIEURS BLOCS AINSI QUE DES CONSTRUCTEURS D OBJETS //
 
 /*
  * Constructeur d'un objet Joueur
@@ -36,7 +36,50 @@ var listeCases = [], // Contient un tableau avec la liste des cases
 	joueur2, // on déclare le joueur2
 	isJ1Turn, // on déclare une variable indiquant à qui est le tour : true -> joueur1, false -> joueur2
 	clicAutorise = false, // variable définissant si oui ou non le clic est autorisé
-	modeJeu,
-	finJeuPopup = $("#finJeuPopup"),
+	modeJeu, // mode de jeu 
+			// 0: 1C1, 1:Debutant, 2:Avancé, 3:Expert
+	finJeuPopup = $("#finJeuPopup"), // popup de fin de jeu
 	materializeBtn = '<button class="btn"/>',
 	theme = 'pirate'; // theme par defaut
+
+
+/*
+ * Changement du theme du jeu (les anges / pirates)
+ */
+function changerTheme() {
+    // on change la valeur de notre theme
+    theme = theme === 'pirate' ? 'ange' : 'pirate';
+    // on actualise le fond d'écran de notre page
+    var imageUrl = "./img/" + theme + "/background.jpg";
+    $('body').css("background-image", 'url('+imageUrl+')');
+}
+
+/*
+ * fonction retournant un bouton rejouer
+ * utilisée dans une popup et sur le jeu lui meme
+ */
+function creerBoutonRejouer() {
+    var boutonRejouer = $(materializeBtn);
+    boutonRejouer.html("Rejouer");    
+
+	boutonRejouer.click(function () {
+        rejouerPartie();
+    });
+
+    return boutonRejouer;
+}
+
+/*
+ * fonction  retournant un bouton quitter
+ * utilisée dans une popup et sur le jeu lui meme
+ */
+function creerBoutonQuitter() {
+	var boutonQuitter = $(materializeBtn);
+    boutonQuitter.html("Quitter");
+
+	boutonQuitter.click(function () {
+        quitterPartie();
+    });
+
+    return boutonQuitter;
+}

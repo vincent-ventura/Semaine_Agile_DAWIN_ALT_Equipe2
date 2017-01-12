@@ -1,44 +1,32 @@
+// FICHIER RECENSANT TOUTES LES FONCTIONS RELATIVES A LA FIN DU JEU
+
+/*
+ * fonction qui verifie si le joueur courant a depassé les 500 points
+ */
 function verifierFinJeu500Points (joueur) {
-	if(joueur.score > 500) {
+	if(joueur.score > 500) { // si 500 points depassés -> finJeu
         var contenu = "Le joueur " + joueur.nom + " a gangé la partie avec " + joueur.score + " points !";
         afficherPopupFinJeu(contenu);
     }
 	else // on change de joueur afin de continuer à jouer
-		changerDeJoueur();
+		finDuTour();
 }
 
+/*
+ * fonction qui verifie si le joueur courant peut encore se deplacer
+ */
 function verifFinJeuPlusDeCasesAccessibles (){
-	var caseDispoExiste = false;
-
     casesAccessiblesJoueurs = determinerCasesAccessibles(iJoueurs);
 
-    if(!casesAccessiblesJoueurs.length) {
+    if(!casesAccessiblesJoueurs.length) { // si aucunes cases accessibles -> finJeu
         var contenu = "Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gangé la partie car il ne peut plus jouer !";
         afficherPopupFinJeu(contenu);
     }
 }
 
-function determinerCasesAccessibles(iCase) {
-    var colonneJoueur = listeCases[iCase].positionX / TAILLE_CASE; // 5
-    var ligneJoueur = listeCases[iCase].positionY / TAILLE_CASE; // 1
-    var casesAccessiblesJoueurs = [];
-
-    for (i=0; i<NOMBRE_CASES_PAR_LIGNE; i++) {
-        var indiceColonne = colonneJoueur + i*NOMBRE_CASES_PAR_LIGNE;
-        if (listeCases[indiceColonne].type === 'piece')
-            casesAccessiblesJoueurs.push(indiceColonne);
-
-        if (i !== colonneJoueur) {
-            var indiceLigne = ligneJoueur*NOMBRE_CASES_PAR_LIGNE + i;
-            if (listeCases[indiceLigne].type === 'piece')
-                casesAccessiblesJoueurs.push(indiceLigne);
-        }
-    }
-
-    result = casesAccessiblesJoueurs.sort(function (a, b) {  return a - b;  });
-    return result;
-}
-
+/*
+ * fonction chargée d'affichée la popup de fin de jeu
+ */
 function afficherPopupFinJeu(contenu) {
     var finJeuPopupContent = $('<div class="popup-content"/>'),
         title = $('<h5/>'),

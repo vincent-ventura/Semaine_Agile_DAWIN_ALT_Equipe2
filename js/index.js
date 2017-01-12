@@ -10,6 +10,7 @@ $(function () {
 	});	
 
 
+	// ajout de listenners sur nos boutons quitter et rejouer
 	$("#rejouer").on("click", function () {
 		rejouerPartie();
 	});
