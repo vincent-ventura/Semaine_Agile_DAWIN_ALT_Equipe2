@@ -1,4 +1,3 @@
-
 $(function () {
 	creerPlateau(); // creation du plateau de jeu
 	placerPiecesAleatoirement(); // placement de piece de façon aléatoire sur plateau

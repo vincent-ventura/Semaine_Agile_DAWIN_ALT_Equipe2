@@ -47,7 +47,7 @@ function deplacerJoueurs(iCase) {
 
 	imgCaseDest.hide(600, function () {
 		imgCaseDest.attr("src", img.attr("src"));
-  		img.removeAttr("src");
+  		img.hide();
   		imgCaseDest.show();
 
 		iJoueurs = iCase;
