@@ -8,7 +8,7 @@ $(function () {
 			clicAutorise = false; // on désactive le clic pendant le traitement du tour
 			var x = e.pageX - this.offsetLeft;
 			var y = e.pageY - this.offsetTop;
-			allerA(positionClic(x, y));
+			jouerTour(positionClic(x, y));
 		}
 	});	
 
