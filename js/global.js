@@ -22,7 +22,7 @@ function Case(numero, type, posX, posY) {
 }
 
 // On initialise nos constantes
-var   DIMENSION_COTE_PLATEAU = 546, // Largeur max = largeur du canvas
+var   DIMENSION_COTE_PLATEAU = 448, // Largeur max = largeur du canvas
 	  NOMBRE_CASES = 49, // Le nombre de cases total est égal aux nombres de cases sur la largeur multipliés par le nombre de cases sur la hauteur
 	  NOMBRE_CASES_PAR_LIGNE = 7, // Nombre de case pour chaque ligne du plateau
 	  TAILLE_CASE = DIMENSION_COTE_PLATEAU/NOMBRE_CASES_PAR_LIGNE; // Taille d'une case du plateau

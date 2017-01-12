@@ -136,11 +136,13 @@ function deplacerJoueurs(iCase) {
 	var img = $("li#" + iJoueurs + " img"); // on récupère l'image du joueur
 	var imgCaseDest = $("li#" + iCase + " img");
 
+	img.css("z-index", 99999);
 	if (deplacement.sens == 1)
 		img.animate({'left':deplacement.distance},'slow');
 	else {
 		img.animate({'top':deplacement.distance},'slow');
 	}
+	img.css("z-index", 1);
 
 	imgCaseDest.hide(600, function () {
 		imgCaseDest.attr("src", img.attr("src"));

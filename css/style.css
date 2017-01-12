@@ -19,8 +19,8 @@ h1 {
 }
 
 #plateau {
-	width: 546px;
-  height: 546px;
+	width: 448px;
+  height: 448px;
 	margin: 5px;
   margin-bottom: 20px;
   /*position: absolute;*/
@@ -30,8 +30,8 @@ h1 {
 }
 
 #plateau li {
-  width: 78;
-  height: 78;
+  width: 64;
+  height: 64;
   color: red;
 }
 
@@ -46,8 +46,8 @@ h1 {
     filter: dropshadow(color=#e0e0e0,offx=-1,offy=-1)
 }
 #plateau ul {
-    height: 78px;
-    width: 546px;
+    height: 64px;
+    width: 448px;
     position: relative;
     background-color: rgba(255,255,255,0.5);
     color: #222;
@@ -96,8 +96,8 @@ h1 {
     display: inline;
     float: left;
     position: relative;
-    height: 78px;
-    width: 78px;
+    height: 64px;
+    width: 64px;
 }
 #plateau ul li:first-child:hover {
     margin-left: 0
@@ -175,7 +175,7 @@ footer {
 
 
 #jeu {
-  width: 75%;
+  width: 100%;
   margin: auto;
 }
 
@@ -198,9 +198,10 @@ footer {
 }*/
 
 .card{
-  height: 546px;
+  width: 448px;
   margin: 0px !important;
   background-image: url('../img/paper.png');
+  text-align: center;
 }
 
 .card p, .card h3, .card h5{
