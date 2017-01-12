@@ -101,6 +101,34 @@ function choisirCaseIAAvance() {
 	return indiceCase;
 }
 
+function choisirCaseIAExpert() {
+	var casesAccessiblesJoueur = determinerCasesAccessibles(iJoueurs),
+		casesAccessiblesCase,
+		indiceMaxDifference,
+		maxDifference = null,
+		maxValeurAdversaire;
+
+	casesAccessiblesJoueur.forEach(function(iCaseJoueur) {
+		var valeurJoueur = listeCases[iCaseJoueur].valeur;
+		maxValeurAdversaire = 0;
+		determinerCasesAccessibles(iCaseJoueur).forEach(function(iCaseAdversaire) {
+			if (listeCases[iCaseAdversaire].valeur > maxValeurAdversaire) {
+				maxValeurAdversaire = listeCases[iCaseAdversaire].valeur;
+			}
+		});
+		if (!maxValeurAdversaire) {
+			return;
+		}
+
+		if (maxDifference === null || maxDifference < valeurJoueur - maxValeurAdversaire) {
+			maxDifference = valeurJoueur - maxValeurAdversaire;
+			indiceMaxDifference = iCaseJoueur;
+		}
+	});
+
+	return indiceMaxDifference;
+}
+
 function deplacerJoueurs(iCase) {
 	var deplacement = determinerSensDeplacement(iCase);
 	listeCases[iJoueurs].type = 'caseVide';
