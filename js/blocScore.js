@@ -75,6 +75,11 @@ function hasBonus(j)
 	}
 	return false;
 }
+
+function initScores() {
+	$("#scoreJ1").text(0);
+	$("#scoreJ2").text(0);
+}
 //***** FIN Partie GESTION Partie LOGIQUE
 
 

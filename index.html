@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<link href="./css/style.css" type="text/css" rel="stylesheet"/>
+	<link href="./css/style.css" media="screen" type="text/css" rel="stylesheet"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   	<script src="./js/jquery.min.js"></script>
 </head>
@@ -11,10 +11,12 @@
 		<h1>Jeu de plateau - JavaScript</h1>
 	</header>
 
+
 	<div id="menu"></div>
 
-	<div id="container" class="row" height="420" style="display:none;">
-		<div class="col s2 m2">
+	<div id="jeu" class="row" style="display:none;">
+		
+		<div class="col l2 m2">
 			<div class="card"><!-- red darken-4 light-blue darken-3 -->
 				<div class="card-content white-text">
 					<img id="imgJ1" src="./img/default-user-image.png" width="70" height="70"/>
@@ -24,17 +26,23 @@
 					<div class="histJ1">
             <ul class="listeP1"></ul>
 					</div>
-					<h5>COMBO</h5>
+					<h5>COMBOS</h5>
 					<h3></h3>
 				</div>
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<div class="col s3 m3">
 			<div id="plateau"></div>
 		</div>
 
 		<div class="col s2 m2">
+=======
+		<div id="plateau"></div>
+
+		<div class="col l2 m2">
+>>>>>>> f4580dca80c31e8bf10cef0d47d45c6755bd2cac
 			<div class="card">
 				<div class="card-content white-text">
 					<img id="imgJ2" src="./img/default-user-image.png" width="70" height="70"/>
@@ -44,18 +52,26 @@
 					<div class="histJ2">
             <ul class="listeP2"></ul>
 					</div>
-					<h5>COMBO</h5>
+					<h5>COMBOS</h5>
 					<h3></h3>
 				</div>
 			</div>
 		</div>
 
-	<!--<div id="highScores">
-	</div>-->
+		<div id="highScores" style="display:none;"></div>
 
-	<footer>Equipe2 : Vincent C. | Valentin F. | Hugo U. | Vincent V. | Matthias R.</footer>
+		<div class="col s12 m12 center">
+			<button id="rejouer" class="btn">Rejouer</button>
+			<button id="quitter" class="btn">Quitter</button>
+		</div>
+		
+
+	</div>
+
+	<footer>Equipe2 : Vincent C. | Valentin F. | Matthias R. | Hugo U. | Vincent V.</footer>
 
 	<script src="./js/menu.js"></script>
+	<script src="./js/blocAffichage.js"></script>
 	<script src="./js/global.js"></script>
 	<script src="./js/blocInit.js"></script>
 	<script src="./js/blocDeplacement.js"></script>
@@ -63,8 +79,6 @@
 	<script src="./js/blocFinJeu.js"></script>
 	<script src="./js/blocHistorique.js"></script>
   	<script src="./js/index.js"></script>
-
-	</div>
 </body>
 
 </html>

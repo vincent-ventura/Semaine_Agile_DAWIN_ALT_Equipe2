@@ -29,7 +29,104 @@ function determinerSensDeplacement(iCase) {
 
 function changerDeJoueur() {
 	isJ1Turn = !isJ1Turn;
-	clicAutorise = true; // on reactive le clic après avoir changé de joueur
+	verifFinJeuPlusDeCasesAccessibles();
+
+	if (modeJeu === 0 || isJ1Turn) {
+		clicAutorise = true; // on reactive le clic après avoir changé de joueur
+	} else {
+		deplacerIA(modeJeu);
+	}
+}
+
+function deplacerIA(modeJeu) {
+	let iCase;
+	switch (modeJeu) {
+		case 1:
+			iCase = choisirCaseIADebutant();
+			break;
+		case 2:
+			iCase = choisirCaseIAAvance();
+			break;
+		default:
+			iCase = choisirCaseIAExpert();
+			break;
+	}
+	window.setTimeout(function() {deplacerJoueurs(iCase);}, 500);
+}
+
+function choisirCaseIADebutant() {
+	var casesAccessibles = determinerCasesAccessibles(iJoueurs),
+		randomCase = Math.floor(Math.random() * casesAccessibles.length);
+	return casesAccessibles[randomCase];
+}
+
+function choisirCaseIAAvance() {
+	var casesAccessiblesJoueur = determinerCasesAccessibles(iJoueurs),
+		casesAccessiblesCase,
+		caseTrouvee = false,
+		indiceCase;
+
+	while(!caseTrouvee) {
+		var maxValeur = 0;
+		casesAccessiblesJoueur.some(function(iCase) {
+			if (listeCases[iCase].valeur === 100) {
+				indiceCase = iCase;
+				maxValeur = listeCases[iCase].valeur;
+				return true;
+			}
+			else {
+				if (listeCases[iCase].valeur > maxValeur) {
+					indiceCase = iCase;
+					maxValeur = listeCases[iCase].valeur;
+				}
+				return false;
+			}
+		});
+
+		if (maxValeur === 100) {
+			return indiceCase;
+		}
+
+		casesAccessiblesCase = determinerCasesAccessibles(indiceCase);
+		var isCentAround = casesAccessiblesCase.some(function(iCase) {
+			return listeCases[iCase].valeur === 100;
+		});
+
+		if(!isCentAround || casesAccessiblesJoueur.length < 2) {
+			caseTrouvee = true;
+		} else {
+			casesAccessiblesJoueur.slice(indiceCase, 1);
+		}
+	}
+	return indiceCase;
+}
+
+function choisirCaseIAExpert() {
+	var casesAccessiblesJoueur = determinerCasesAccessibles(iJoueurs),
+		casesAccessiblesCase,
+		indiceMaxDifference,
+		maxDifference = null,
+		maxValeurAdversaire;
+
+	casesAccessiblesJoueur.forEach(function(iCaseJoueur) {
+		var valeurJoueur = listeCases[iCaseJoueur].valeur;
+		maxValeurAdversaire = 0;
+		determinerCasesAccessibles(iCaseJoueur).forEach(function(iCaseAdversaire) {
+			if (listeCases[iCaseAdversaire].valeur > maxValeurAdversaire) {
+				maxValeurAdversaire = listeCases[iCaseAdversaire].valeur;
+			}
+		});
+		if (!maxValeurAdversaire) {
+			return;
+		}
+
+		if (maxDifference === null || maxDifference < valeurJoueur - maxValeurAdversaire) {
+			maxDifference = valeurJoueur - maxValeurAdversaire;
+			indiceMaxDifference = iCaseJoueur;
+		}
+	});
+
+	return indiceMaxDifference;
 }
 
 function deplacerJoueurs(iCase) {
@@ -39,16 +136,18 @@ function deplacerJoueurs(iCase) {
 	var img = $("li#" + iJoueurs + " img"); // on récupère l'image du joueur
 	var imgCaseDest = $("li#" + iCase + " img");
 
+	img.css("z-index", 99999);
 	if (deplacement.sens == 1)
-  		img.animate({'left':deplacement.distance},'slow');
-  	else {
-  		img.animate({'top':deplacement.distance},'slow');
-  	}
+		img.animate({'left':deplacement.distance},'slow');
+	else {
+		img.animate({'top':deplacement.distance},'slow');
+	}
+	img.css("z-index", 1);
 
 	imgCaseDest.hide(600, function () {
 		imgCaseDest.attr("src", img.attr("src"));
-  		img.hide();
-  		imgCaseDest.show();
+		img.hide();
+		imgCaseDest.show();
 
 		iJoueurs = iCase;
 		listeCases[iJoueurs].type = 'joueur';
@@ -63,11 +162,13 @@ function deplacerJoueurs(iCase) {
 	});
 }
 
-function allerA (iCase) {
-	if( deplacementValide(iCase) ) {
-		deplacerJoueurs(iCase);
-	} else {
-		clicAutorise = true; // on reactive le clic
+function jouerTour(iCase) {
+	if (isJ1Turn || modeJeu === 0) {
+		if( deplacementValide(iCase) ) {
+			deplacerJoueurs(iCase);
+		} else {
+			clicAutorise = true; // on reactive le clic
+		}
 	}
 }
 
