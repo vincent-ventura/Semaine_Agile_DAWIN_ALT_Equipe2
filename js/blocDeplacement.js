@@ -30,7 +30,7 @@ function determinerSensDeplacement(iCase) {
 function changerDeJoueur() {
 	isJ1Turn = !isJ1Turn;
 	verifFinJeuPlusDeCasesAccessibles();
-	
+
 	if (etatJeu === 0 || isJ1Turn) {
 		clicAutorise = true; // on reactive le clic après avoir changé de joueur
 	} else {
@@ -51,11 +51,13 @@ function deplacerIA(etatJeu) {
 			iCase = choisirCaseIAExpert();
 			break;
 	}
-	window.setTimeout(function() {deplacerJoueurs(iCase);}, 1000);
+	window.setTimeout(function() {deplacerJoueurs(iCase);}, 500);
 }
 
 function choisirCaseIADebutant() {
-
+	var casesAccessibles = determinerCasesAccessiblesJoueur(),
+		randomCase = Math.floor(Math.random() * casesAccessibles.length);
+	return casesAccessibles[randomCase];
 }
 
 function deplacerJoueurs(iCase) {

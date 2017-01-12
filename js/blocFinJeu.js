@@ -10,11 +10,7 @@ function verifFinJeuPlusDeCasesAccessibles (){
 
     casesAccessiblesJoueurs = determinerCasesAccessiblesJoueur();
 
-    caseDispoExiste = casesAccessiblesJoueurs.some(function (iCase) {
-        return listeCases[iCase].type === 'piece';
-    });
-
-    if( !caseDispoExiste ){
+    if( !casesAccessiblesJoueurs.length ) {
         alert("Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gangé la partie car il ne peut plus jouer !"); 
     }
 }
@@ -25,10 +21,15 @@ function determinerCasesAccessiblesJoueur() {
     var casesAccessiblesJoueurs = [];
 
     for (i=0; i<NOMBRE_CASES_PAR_LIGNE; i++) {
-        casesAccessiblesJoueurs.push(colonneJoueur + i*NOMBRE_CASES_PAR_LIGNE);
+        var indiceColonne = colonneJoueur + i*NOMBRE_CASES_PAR_LIGNE;
+        if (listeCases[indiceColonne].type === 'piece')
+            casesAccessiblesJoueurs.push(indiceColonne);
 
-        if (i !== colonneJoueur)
-        casesAccessiblesJoueurs.push(ligneJoueur*NOMBRE_CASES_PAR_LIGNE + i);
+        if (i !== colonneJoueur) {
+            var indiceLigne = ligneJoueur*NOMBRE_CASES_PAR_LIGNE + i;
+            if (listeCases[indiceLigne].type === 'piece')
+                casesAccessiblesJoueurs.push(indiceLigne);
+        }
     }
 
     result = casesAccessiblesJoueurs.sort(function (a, b) {  return a - b;  });
