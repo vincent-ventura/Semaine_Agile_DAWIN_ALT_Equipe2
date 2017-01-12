@@ -1,7 +1,4 @@
 $(function () {
-	creerPlateau(); // creation du plateau de jeu
-	placerPiecesAleatoirement(); // placement de piece de façon aléatoire sur plateau
-
 	// on commence le jeu en placant un listener sur les clics effectués sur le plateau
 	plateau.on('click', function (e) {
 		if(clicAutorise) {
@@ -11,5 +8,14 @@ $(function () {
 			jouerTour(positionClic(x, y));
 		}
 	});	
+
+
+	$("#rejouer").on("click", function () {
+		rejouerPartie();
+	});
+
+	$("#quitter").on("click", function () {
+		quitterPartie();
+	});
 
 });

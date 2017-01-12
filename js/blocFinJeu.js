@@ -1,6 +1,8 @@
 function verifierFinJeu500Points (joueur) {
-	if(joueur.score > 500)
-		alert("Le joueur " + joueur.nom + " a gangé la partie avec " + joueur.score + " points !");
+	if(joueur.score > 500) {
+        var contenu = "Le joueur " + joueur.nom + " a gangé la partie avec " + joueur.score + " points !";
+        afficherPopupFinJeu(contenu);
+    }
 	else // on change de joueur afin de continuer à jouer
 		changerDeJoueur();
 }
@@ -10,8 +12,9 @@ function verifFinJeuPlusDeCasesAccessibles (){
 
     casesAccessiblesJoueurs = determinerCasesAccessibles(iJoueurs);
 
-    if( !casesAccessiblesJoueurs.length ) {
-        alert("Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gangé la partie car il ne peut plus jouer !"); 
+    if(!casesAccessiblesJoueurs.length) {
+        var contenu = "Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gangé la partie car il ne peut plus jouer !";
+        afficherPopupFinJeu(contenu);
     }
 }
 
@@ -34,4 +37,22 @@ function determinerCasesAccessibles(iCase) {
 
     result = casesAccessiblesJoueurs.sort(function (a, b) {  return a - b;  });
     return result;
+}
+
+function afficherPopupFinJeu(contenu) {
+    var finJeuPopupContent = $('<div class="popup-content"/>'),
+        title = $('<h5/>'),
+        finJeuPopup = $('<div class="popup"/>'),
+        boutonRejouer = creerBoutonRejouer(),
+        boutonQuitter = creerBoutonQuitter();
+
+    title.html("Fin de la partie");
+    
+    finJeuPopupContent.append(title);
+    finJeuPopupContent.append(contenu);
+    finJeuPopupContent.append(boutonRejouer);
+    finJeuPopupContent.append(boutonQuitter);
+
+    finJeuPopup.append(finJeuPopupContent);
+    $("body").append(finJeuPopup);
 }

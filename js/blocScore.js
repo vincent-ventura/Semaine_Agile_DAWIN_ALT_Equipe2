@@ -9,3 +9,8 @@ function mettreAJourScore(joueur) {
 	// vérifier si le joueur courant a dépassé les 500 points
 	verifierFinJeu500Points(joueur);
 }
+
+function initScores() {
+	$("#scoreJ1").text(0);
+	$("#scoreJ2").text(0);
+}

@@ -1,4 +1,4 @@
-/*** BLOCINIT : INITIALISE UNE NOUVELLE PARTIE ***/
+/*** BLOCINIT : FONCTIONS D'INITIALISATION D'UNE NOUVELLE PARTIE ***/
 
 /*
  * Réinitialisation des variables utilisée pour le déroulement du jeu
@@ -6,7 +6,7 @@
  function initialiserJoueurs() {
  	// Initialisation des deux joueurs
  	joueur1 = new Joueur("Joueur 1", 0);
-	joueur2 = new Joueur("Joueur 2", etatJeu);
+	joueur2 = new Joueur("Joueur 2", modeJeu);
 	isJ1Turn = true; // Le joueur 1 est le premier à jouer
 
 	// Inserer les images et noms des joueurs
@@ -14,6 +14,16 @@
 	$("#imgJ2").attr("src", "./img/pieuvre.png");
 	$("#nomJ1").text(joueur1.nom);
 	$("#nomJ2").text(joueur2.nom);
+
+	initScores();
+	initPositionJoueurs();
+
+	// autoriser le clic pour débuter la partie
+	clicAutorise = true;
+ }
+
+ function initPositionJoueurs() {
+ 	iJoueurs = Math.floor(NOMBRE_CASES / 2);
  }
 
 /*
@@ -162,4 +172,22 @@ function placerPiecesAleatoirement() {
 			}
 		})(i);
 	}
+}
+
+function demarrerPartie() {
+	creerPlateau(); // creation du plateau de jeu
+	placerPiecesAleatoirement(); // placement de piece de façon aléatoire sur plateau
+}
+
+function rejouerPartie() {
+	plateau.empty();
+    demarrerPartie();
+    $(".popup").remove();
+}
+
+function quitterPartie() {
+	plateau.empty();
+    $(".popup").remove();
+    $("#jeu").hide();
+    $("#menu").show(100);
 }

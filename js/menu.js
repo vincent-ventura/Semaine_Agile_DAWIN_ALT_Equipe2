@@ -1,84 +1,87 @@
-(function() {
+$(function() {
 	// déclaration des variables et création des éléments
-	var contenant = document.getElementById('menu');
-	let titreJeu = document.createElement('h2'),
-		boutonJouerSeul = document.createElement('button'),
-		boutonJouerADeux = document.createElement('button'),
-		contenantBoutons = document.createElement('div'),
-		separation = document.createElement('br');
+	var	contenant = $('#menu'),
+		titreJeu = $('<h2/>'),
+		boutonJouerSeul = $(materializeBtn),
+		boutonJouerADeux = $(materializeBtn),
+		contenantBoutons = $('<div/>');
 
 	// réinitialiser le contenu
-	contenant.innerHTML = '';
+	contenant.empty();
 
 	// modification des éléments
-	titreJeu.innerHTML = 'Tresaure hunt';
-	boutonJouerSeul.innerHTML = 'Jouer contre l\'ordinateur';
-	boutonJouerADeux.innerHTML = 'Jouer à deux';
+	titreJeu.html('Tresaure hunt');
+	boutonJouerSeul.html('Jouer seul');
+	boutonJouerADeux.html('Jouer à deux');
 
 	// écouter les événements
-	boutonJouerSeul.onclick = jouerSeul;
-	boutonJouerADeux.onclick = function() {
-			jouer(0);
-	};
+	boutonJouerSeul.click(function () {
+		jouerSeul();
+	});
+	boutonJouerADeux.click(function () {
+		jouer(0);
+	});
 
 	// insertion des éléments
-	contenant.appendChild(titreJeu);
-	contenantBoutons.appendChild(boutonJouerSeul);
-	contenantBoutons.appendChild(separation);
-	contenantBoutons.appendChild(boutonJouerADeux);
-	contenant.appendChild(contenantBoutons);
+	contenant.append(titreJeu);
+	contenantBoutons.append(boutonJouerSeul);
+	contenantBoutons.append(boutonJouerADeux);
+	contenant.append(contenantBoutons);
 
 	function jouerSeul() {
 		// déclaration des variables et création des éléments
-		var popUp = document.createElement('div');
-		let popUpContent = document.createElement('div'),
-			popUpTitle = document.createElement('h3'),
-			boutonDebutant = document.createElement('button'),
-			boutonAvance = document.createElement('button'),
-			boutonExpert = document.createElement('button'),
-			fermerPopUp = document.createElement('span');
+		var popUp = $('<div/>');
+		let popUpContent = $('<div/>'),
+			popUpTitle = $('<h5/>'),
+			boutonDebutant = $(materializeBtn),
+			boutonAvance = $(materializeBtn),
+			boutonExpert = $(materializeBtn),
+			fermerPopUp = $('<span/>');
 
 		// modification des éléments
 
 		// attribution des classes
-		popUp.className = 'popup';
-		popUpContent.className = 'popup-content';
-		fermerPopUp.className = 'close';
+		popUp.addClass('popup');
+		popUpContent.addClass('popup-content');
+		fermerPopUp.addClass('close');
 
 		// modification du contenu
-		fermerPopUp.innerHTML = '&times';
-		popUpTitle.innerHTML = 'Choisissez un niveau de difficulté';
-		boutonDebutant.innerHTML = 'Mode débutant';
-		boutonAvance.innerHTML = 'Mode avancé';
-		boutonExpert.innerHTML = 'Mode expert';
+		fermerPopUp.html('&times');
+		popUpTitle.html('Choisissez un niveau de difficulté');
+		boutonDebutant.html('Mode débutant');
+		boutonAvance.html('Mode avancé');
+		boutonExpert.html('Mode expert');
 
 		// écouter les événements
-		fermerPopUp.onclick = function() {
-			contenant.removeChild(popUp);
-		};
-		boutonDebutant.onclick = function() {
+		fermerPopUp.click(function() {
+			popUp.remove();
+		});
+		boutonDebutant.click(function () {
 			jouer(1);
-		}
-		boutonAvance.onclick = function() {
+		});
+		boutonAvance.click(function () {
 			jouer(2);
-		}
-		boutonExpert.onclick = function() {
-			jouer(3)
-		}
+		});
+		boutonExpert.click(function () {
+			jouer(3);
+		});
 
 		// insertion des elements
-		popUpContent.appendChild(popUpTitle);
-		popUpContent.appendChild(fermerPopUp);
-		popUpContent.appendChild(boutonDebutant);
-		popUpContent.appendChild(boutonAvance);
-		popUpContent.appendChild(boutonExpert);
-		popUp.appendChild(popUpContent);
-		contenant.appendChild(popUp);
+		popUpContent.append(fermerPopUp);
+		popUpContent.append(popUpTitle);
+		popUpContent.append(boutonDebutant);
+		popUpContent.append(boutonAvance);
+		popUpContent.append(boutonExpert);
+		popUp.append(popUpContent);
+		contenant.append(popUp);
 	}
 
 	function jouer(num) {
+		$(".popup").remove();
 		$(contenant).hide();
-		etatJeu = num;
-		$("#container").show(200);
+		modeJeu = num;
+		$("#jeu").show(200);
+		demarrerPartie();
 	}
-})();
+
+});

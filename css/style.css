@@ -22,6 +22,7 @@ h1 {
 	width: 546px;
   height: 546px;
 	margin: 5px;
+  margin-bottom: 20px;
   /*position: absolute;*/
   border-collapse: 4px outset gray;
   float: left;
@@ -138,7 +139,7 @@ footer {
 #highScores
 {
   border-radius: 25px;
-  background-image : url(./img/paper.gif);
+  background-image : url(../img/paper.gif);
   background-position: left top;
   background-repeat: repeat;
   padding: 20px;
@@ -156,7 +157,7 @@ footer {
 
 #rcorners3 {
     border-radius: 25px;
-    background: url(./img/paper.gif);
+    background: url(../img/paper.gif);
     background-position: left top;
     background-repeat: repeat;
     padding: 20px;
@@ -173,7 +174,7 @@ footer {
 }
 
 
-#container {
+#jeu {
   width: 75%;
   margin: auto;
 }
@@ -205,10 +206,10 @@ footer {
 }
 
 
-#menu button {
-  display: block;
-  margin: auto;
-  margin-bottom: 50px;
+#menu button, .popup button {
+  display: block !important;
+  margin: auto !important;
+  margin-bottom: 10px !important;
 }
 
 #menu div {
@@ -225,9 +226,9 @@ footer {
 
 /* The Modal (background) */
 .popup {
-  display: block;
+    display: block;
     position: absolute;
-    z-index: 1;
+    z-index: 10000;
     padding-top: 200px;
     top: 0;
     left: 0;
@@ -238,19 +239,17 @@ footer {
 
 .popup-content {
     background-color: #fefefe;
+    text-align: center;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 20%;
-}
-
-.popup-content {
-
+    width: 50%;
 }
 
 .close {
     color: #aaaaaa;
     float: right;
+    padding: 0;
     font-size: 28px;
     font-weight: bold;
 }
