@@ -182,7 +182,7 @@ function placementAleatoireDesPieces() {
 				100];
 
 	//var 
-	var randomCase = Math.floor(Math.random() * (pieces.length-1);
+	var randomCase = Math.floor(Math.random() * (pieces.length-1));
 }
 
 function demarrerPartie() {
