@@ -33,8 +33,8 @@ $(function() {
 
 	function jouerSeul() {
 		// déclaration des variables et création des éléments
-		var popUp = $('<div/>');
-		let popUpContent = $('<div/>'),
+		var popUp = $('<div/>'),
+			popUpContent = $('<div/>'),
 			popUpTitle = $('<h5/>'),
 			boutonDebutant = $(materializeBtn),
 			boutonAvance = $(materializeBtn),

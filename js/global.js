@@ -83,3 +83,25 @@ function creerBoutonQuitter() {
 
     return boutonQuitter;
 }
+
+/*
+ * fonction integrant notre popup d'aide
+ */
+function afficherPopupAide() {
+    var popupContent = $('<div class="popup-content"/>'),
+        popup = $('<div class="popup"/>'),
+		fermerPopUp = $('<span/>');
+
+    var contenu = "<h5>Aide en ligne<h5>";
+   	fermerPopUp.addClass('close');
+	fermerPopUp.html('&times');
+	fermerPopUp.click(function() {
+		popup.remove();
+	});
+   
+   	popupContent.append(fermerPopUp);
+    popupContent.append(contenu);
+
+    popup.append(popupContent);
+    $("body").append(popup);
+}

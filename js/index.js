@@ -19,4 +19,7 @@ $(function () {
 		quitterPartie();
 	});
 
+	$("#aide").on("click", function () {
+		afficherPopupAide();
+	});
 });
