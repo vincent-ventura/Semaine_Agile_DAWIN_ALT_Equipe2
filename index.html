@@ -15,15 +15,17 @@
 		<div id="menu" class="col l12 m12 s12"></div>
 	</div>
 
-	<div id="jeu" class="row">
+	<div id="jeu" class="row" style="display:none;">
+
 		<div class="col l2 m2">
 			<div class="card"><!-- red darken-4 light-blue darken-3 -->
 				<div class="card-content white-text">
 					<img id="imgJ1" src="./img/default-user-image.png" width="70" height="70"/>
 					<p id="nomJ1"></p>
 					<h3 id="scoreJ1">0</h3>
-					<p>Dernière pièce ramassée: </p>
+					<span>Derniers points : </span>
 					<div class="histJ1">
+            <ul class="listeP1"></ul>
 					</div>
 					<h5>COMBOS</h5>
 					<h3></h3>
@@ -31,16 +33,20 @@
 			</div>
 		</div>
 
-		<div id="plateau"></div>
 
+		<div class="col s3 m3">
+			<div id="plateau"></div>
+		</div>
 		<div class="col l2 m2">
+
 			<div class="card">
 				<div class="card-content white-text">
 					<img id="imgJ2" src="./img/default-user-image.png" width="70" height="70"/>
 					<p id="nomJ2"></p>
 					<h3 id="scoreJ2">0</h3>
-					<p>Dernière pièce ramassée: </p>
+					<span>Derniers points : </span>
 					<div class="histJ2">
+            <ul class="listeP2"></ul>
 					</div>
 					<h5>COMBOS</h5>
 					<h3></h3>
@@ -54,7 +60,7 @@
 			<button id="rejouer" class="btn">Rejouer</button>
 			<button id="quitter" class="btn">Quitter</button>
 		</div>
-		
+
 
 	</div>
 

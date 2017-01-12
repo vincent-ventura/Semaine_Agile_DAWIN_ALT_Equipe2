@@ -169,7 +169,7 @@ footer {
 
 
 
-/*.col {
+.col {
   margin-top: 20px;
 }
 
@@ -183,7 +183,7 @@ footer {
   width: auto !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
-}*/
+}
 
 .card{
   height: 448px;
@@ -192,7 +192,7 @@ footer {
   text-align: center;
 }
 
-.card p, .card h3, .card h5{
+.card p, .card h3, .card h5, .card span{
   color: #333 !important;
 }
 
@@ -291,4 +291,20 @@ footer {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.listeP1 li, .listeP2 li
+{
+  text-align: center;
+  font-weight: bolder;
+}
+
+.bonus
+{
+  color : #ff4000;
+}
+
+.point
+{
+  color: #4d3319;
 }

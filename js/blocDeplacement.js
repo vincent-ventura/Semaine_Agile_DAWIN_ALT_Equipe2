@@ -151,7 +151,7 @@ function deplacerJoueurs(iCase) {
 
 		iJoueurs = iCase;
 		listeCases[iJoueurs].type = 'joueur';
-		
+
 		if(isJ1Turn) {
 			imgCaseDest.attr("src", './img/' + theme + '/joueur2.png');
 			mettreAJourScore(joueur1);
