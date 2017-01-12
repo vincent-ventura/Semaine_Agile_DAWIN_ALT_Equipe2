@@ -17,7 +17,9 @@
 
 	// écouter les événements
 	boutonJouerSeul.onclick = jouerSeul;
-	boutonJouerADeux.onclick = jouerADeux;
+	boutonJouerADeux.onclick = function() {
+			jouer(0);
+	};
 
 	// insertion des éléments
 	contenant.appendChild(titreJeu);
@@ -55,13 +57,13 @@
 			contenant.removeChild(popUp);
 		};
 		boutonDebutant.onclick = function() {
-			// TODO niveau IA débutant
+			jouer(1);
 		}
 		boutonAvance.onclick = function() {
-			// TODO niveau IA avancé
+			jouer(2);
 		}
 		boutonExpert.onclick = function() {
-			// TODO niveau IA expert
+			jouer(3)
 		}
 
 		// insertion des elements
@@ -74,8 +76,9 @@
 		contenant.appendChild(popUp);
 	}
 
-	function jouerADeux() {
+	function jouer(num) {
 		$(contenant).hide();
+		etatJeu = num;
 		$("#container").show(200);
 	}
 })();

@@ -5,8 +5,8 @@
  */
  function initialiserJoueurs() {
  	// Initialisation des deux joueurs
- 	joueur1 = new Joueur("Joueur 1");
-	joueur2 = new Joueur("Joueur 2");
+ 	joueur1 = new Joueur("Joueur 1", 0);
+	joueur2 = new Joueur("Joueur 2", etatJeu);
 	isJ1Turn = true; // Le joueur 1 est le premier à jouer
 
 	// Inserer les images et noms des joueurs
