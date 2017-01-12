@@ -95,9 +95,8 @@ h1 {
     display: inline;
     float: left;
     position: relative;
-    height: 75px;
-    width: 75px;
-    border: 1px solid silver;
+    height: 78px;
+    width: 78px;
 }
 #plateau ul li:first-child:hover {
     margin-left: 0
@@ -110,9 +109,12 @@ h1 {
 #plateau ul li img {
     display: block;
     position: relative;
-    height: 100%;
+    top: 10%;
+    height: 80%;
     width: auto;
-    text-align: center
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
 }
 
 /*header {
