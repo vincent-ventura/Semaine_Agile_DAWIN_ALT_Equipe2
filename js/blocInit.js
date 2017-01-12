@@ -1,7 +1,7 @@
 /*** BLOCINIT : FONCTIONS D'INITIALISATION D'UNE NOUVELLE PARTIE ***/
 
 /*
- * Réinitialisation des variables utilisée pour le déroulement du jeu
+ * Réinitialisation des joueurs
  */
  function initialiserJoueurs() {
  	// Initialisation des deux joueurs

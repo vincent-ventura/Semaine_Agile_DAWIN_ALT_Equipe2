@@ -79,6 +79,8 @@ function hasBonus(j)
 function initScores() {
 	$("#scoreJ1").text(0);
 	$("#scoreJ2").text(0);
+	$("ul.listeP1").empty();
+	$("ul.listeP2").empty();
 }
 //***** FIN Partie GESTION Partie LOGIQUE
 
