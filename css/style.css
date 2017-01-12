@@ -32,6 +32,30 @@ h1 {
     height: auto;
     width: auto;
   }
+
+  #plateau li
+  {
+    height: auto;
+    width: auto;
+  }
+
+  #plateau ul
+  {
+    width: auto;
+    height: auto;
+  }
+
+  #plateau ul li
+  {
+    height: auto;
+    width: auto;
+  }
+
+  #plateau ul li img
+  {
+    height: 70px;
+    width: 70px;
+  }
 }
 
 @media only screen and (max-width: 1500px){
@@ -40,28 +64,36 @@ h1 {
     height: 280px;
     width: 280px;
   }
+
+  #plateau li
+  {
+    height: 78px;
+    width: 78px;
+  }
+
+  #plateau ul
+  {
+    width: 280px;
+    height: 40px;
+  }
+
+  #plateau ul li
+  {
+    height: 40px;
+    width: 40px;
+  }
+
+  #plateau ul li img
+  {
+    height: 38px;
+    width: 38px;
+  }
 }
 
 #plateau li {
   /*width: 78;
   height: 78;*/
   color: red;
-}
-
-@media only screen and (min-width: 1500px){
-  #plateau li
-  {
-    height: auto;
-    width: auto;
-  }
-}
-
-@media only screen and (max-width: 1500px){
-  #plateau li
-  {
-    height: 78px;
-    width: 78px;
-  }
 }
 
 #plateau .label {
@@ -84,21 +116,6 @@ h1 {
     padding: 0;
 }
 
-@media only screen and (min-width: 1500px){
-  #plateau ul
-  {
-    width: auto;
-    height: auto;
-  }
-}
-
-@media only screen and (max-width: 1500px){
-  #plateau ul
-  {
-    width: 280px;
-    height: 40px;
-  }
-}
 #plateau ul:first-child div:hover, #plateau ul:first-child #cover form:hover, #cover #plateau ul:first-child form:hover {
     margin-top: 0
 }
@@ -146,20 +163,6 @@ h1 {
     border: 1px solid silver;
 }
 
-@media only screen and (min-width: 1500px){
-#plateau ul li
-{
-  height: auto;
-  width: auto;
-}}
-
-@media only screen and (max-width: 1500px){
-#plateau ul li
-{
-  height: 40px;
-  width: 40px;
-}}
-
 #plateau ul li:first-child:hover {
     margin-left: 0
 }
@@ -175,20 +178,6 @@ h1 {
     width: auto;*/
     text-align: center
 }
-
-@media only screen and (min-width: 1500px){
-#plateau ul li img
-{
-  height: 70px;
-  width: 70px;
-}}
-
-@media only screen and (max-width: 1500px){
-#plateau ul li img
-{
-  height: 38px;
-  width: 38px;
-}}
 
 /*header {
     padding: 1em;
