@@ -31,16 +31,16 @@ function changerDeJoueur() {
 	isJ1Turn = !isJ1Turn;
 	verifFinJeuPlusDeCasesAccessibles();
 
-	if (etatJeu === 0 || isJ1Turn) {
+	if (modeJeu === 0 || isJ1Turn) {
 		clicAutorise = true; // on reactive le clic après avoir changé de joueur
 	} else {
-		deplacerIA(etatJeu);
+		deplacerIA(modeJeu);
 	}
 }
 
-function deplacerIA(etatJeu) {
+function deplacerIA(modeJeu) {
 	let iCase;
-	switch (etatJeu) {
+	switch (modeJeu) {
 		case 1:
 			iCase = choisirCaseIADebutant();
 			break;
@@ -161,7 +161,7 @@ function deplacerJoueurs(iCase) {
 }
 
 function jouerTour(iCase) {
-	if (isJ1Turn || etatJeu === 0) {
+	if (isJ1Turn || modeJeu === 0) {
 		if( deplacementValide(iCase) ) {
 			deplacerJoueurs(iCase);
 		} else {

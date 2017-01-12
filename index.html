@@ -11,10 +11,12 @@
 		<h1>Jeu de plateau - JavaScript</h1>
 	</header>
 
+
 	<div id="menu"></div>
 
-	<div id="container" class="row" style="display:none;">
+	<div id="jeu" class="row" style="display:none;">
 		
+
 		<div class="col offset-l3 l6 m6" id="plateau"></div>
 
 		<div class="col l2 m2">
@@ -27,7 +29,7 @@
 						<p>Dernière pièce ramassée: </p>
 						<div class="histJ1">
 						</div>
-						<h5>COMBO</h5>
+						<h5>COMBOS</h5>
 						<h3></h3>
 					</div>
 				</div>
@@ -42,28 +44,33 @@
 						<p>Dernière pièce ramassée: </p>
 						<div class="histJ2">
 						</div>
-						<h5>COMBO</h5>
+						<h5>COMBOS</h5>
 						<h3></h3>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!--<div id="highScores">
-		</div>-->
+		<div id="highScores" style="display:none;"></div>
 
-		<footer>Equipe2 : Vincent C. | Valentin F. | Matthias R. | Hugo U. | Vincent V.</footer>
-
-		<script src="./js/menu.js"></script>
-		<script src="./js/global.js"></script>
-		<script src="./js/blocInit.js"></script>
-		<script src="./js/blocDeplacement.js"></script>
-		<script src="./js/blocScore.js"></script>
-		<script src="./js/blocFinJeu.js"></script>
-		<script src="./js/blocHistorique.js"></script>
-	  	<script src="./js/index.js"></script>
+		<div class="col s12 m12 center">
+			<button id="rejouer" class="btn">Rejouer</button>
+			<button id="quitter" class="btn">Quitter</button>
+		</div>
 
 	</div>
+
+	<footer>Equipe2 : Vincent C. | Valentin F. | Matthias R. | Hugo U. | Vincent V.</footer>
+
+	<script src="./js/menu.js"></script>
+	<script src="./js/blocAffichage.js"></script>
+	<script src="./js/global.js"></script>
+	<script src="./js/blocInit.js"></script>
+	<script src="./js/blocDeplacement.js"></script>
+	<script src="./js/blocScore.js"></script>
+	<script src="./js/blocFinJeu.js"></script>
+	<script src="./js/blocHistorique.js"></script>
+  	<script src="./js/index.js"></script>
 </body>
 
 </html>

@@ -29,10 +29,12 @@ var   DIMENSION_COTE_PLATEAU = 546, // Largeur max = largeur du canvas
 
 // On initialise nos variables globales
 var listeCases = [], // Contient un tableau avec la liste des cases
-	iJoueurs = Math.floor(NOMBRE_CASES / 2), // Position des joueurs dans la liste des cases (init au milieu du plateau)
+	iJoueurs, // Position des joueurs dans la liste des cases (init au milieu du plateau)
 	plateau = $("#plateau"), // on récupère l'élément représentant notre plateau de jeu
 	joueur1, // on déclare le joueur1
 	joueur2, // on déclare le joueur2
 	isJ1Turn, // on déclare une variable indiquant à qui est le tour : true -> joueur1, false -> joueur2
-	clicAutorise = true, // variable définissant si oui ou non le clic est autorisé
-	etatJeu;
+	clicAutorise = false, // variable définissant si oui ou non le clic est autorisé
+	modeJeu,
+	finJeuPopup = $("#finJeuPopup"),
+	materializeBtn = '<button class="btn"/>';
