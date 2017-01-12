@@ -54,94 +54,72 @@ function creerPlateau() {
 	}
 }
 
+function placementAleatoireDesPieces() {
+	var piecesAPlacer = [
+				10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+				20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+				30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+				50, 50, 50, 50, 50,
+				100];
 
-function placerPiecesAleatoirement() {
-	//valeur limite en quantité des valeurs des pieces
-	const 	limite50Qte = 5;
-	const	limite10Qte = 14;
-	const	limite20Qte = 14;
-	const	limite30Qte = 14;
-	//compteur pour chaque valeur
-	var 	cpt50 = 0,
-			cpt10 = 0,
-			cpt20 = 0,
-			cpt30 = 0;
-
-	// tableau contenant les valeurs des pieces a valoriser
-	var valArray = [100, 10, 20, 30, 50];
-	var valArrayWithout100 = [10, 20, 30, 50];
-	//ensemble contenant les valeurs des pieces a valoriser
-	var valSet = new Set(valArray);
-	//Fonction renvoyant aleatoire les valeurs des pieces
-	function randomVal(include100)
-	{
-		var tabToHandle = include100 ? valArray : valArrayWithout100;
-		var rand = tabToHandle[Math.floor(Math.random()*tabToHandle.length)];
-		if (rand === 100 )
-		{
-			valSet.delete(100);
-			updateTab(tabToHandle);
-			return 100;
-		}
-		//PE refactoriser cette partie ?
-		if( rand === 50 && cpt50 < limite50Qte)
-		{
-			cpt50++;
-			if( cpt50 === limite50Qte )
-			{
-				valSet.delete(50);
-				updateTab(tabToHandle);
-			}
-		}
-		if( rand === 10 && cpt10 < limite10Qte)
-		{
-			cpt10++;
-			if( cpt10 === limite10Qte )
-			{
-				valSet.delete(10);
-				updateTab(tabToHandle);
-			}
-		}
-		if( rand === 20 && cpt20 < limite20Qte)
-		{
-			cpt20++;
-			if( cpt20 === limite20Qte )
-			{
-				valSet.delete(20);
-				updateTab(tabToHandle);
-			}
-		}
-		if( rand === 30 && cpt30 < limite30Qte)
-		{
-			cpt30++;
-			if( cpt30 === limite30Qte )
-			{
-				valSet.delete(30);
-				updateTab(tabToHandle);
-			}
-		}
-		eval(rand);
-		return rand;
-	}
-	//fonction de MAJ des tableaux de valeurs
-	function updateTab(tab)
-	{
-		if( tab === valArray )
-			valArray = Array.from(valSet);
-		if( tab === valArrayWithout100)
-			valArrayWithout100 = Array.from(valSet);
+	var casesInterditesALaPiece100 = determinerCasesAccessibles(iJoueurs);
+	// remplir les cases interdites à la piece 100
+	for(i=0; i<casesInterditesALaPiece100.length; i++) {
+		var iRandomPiece = Math.floor(Math.random() * (piecesAPlacer.length-1));
+		listeCases[casesInterditesALaPiece100[i]].valeur = piecesAPlacer[iRandomPiece];
+		piecesAPlacer.splice(iRandomPiece, 1);
 	}
 
-	//ensemble de valeurs de cases ne devant pas contenir la valeur 100
-	// numeros de cases sur la ligne du milieu et la colonne du milieu
-	const indexLigneDuMilieu = [21, 22, 23, 25, 26, 27];
-	const indexColonneDuMilieu = [3, 10, 17, 31, 38, 45];
-	const indexCaseWithout100 = new Set(indexColonneDuMilieu.concat(indexLigneDuMilieu));
-	// Il y a 49 cases, on vérifie l'type de chacune et si c'est une piece, on colore la case en gris
+	// placer le reste des pieces
+	while(piecesAPlacer.length) {
+		var iRandomPiece = Math.floor(Math.random() * (piecesAPlacer.length));
+		var iPremiereCaseVide = recupererPremiereCaseVide();
+		listeCases[iPremiereCaseVide].valeur = piecesAPlacer[iRandomPiece];
+		piecesAPlacer.splice(iRandomPiece, 1);
+	}
+
+	attribuerImagesAuxCases();
+}
+
+function demarrerPartie() {
+	creerPlateau(); // creation du plateau de jeu
+	placementAleatoireDesPieces(); // placement de piece de façon aléatoire sur plateau
+}
+
+function rejouerPartie() {
+	plateau.empty();
+    demarrerPartie();
+    $(".popup").remove();
+}
+
+function quitterPartie() {
+	plateau.empty();
+    $(".popup").remove();
+    $("#jeu").hide();
+    $("#menu").show(100);
+}
+
+/*
+ * Fonction retournant la premiere case de valeur 0
+ */
+function recupererPremiereCaseVide() {
+	var iPremiereCaseVide = null;
+	listeCases.some(function(c) {
+		if(c.valeur === 0 && c.type !== 'joueur') {
+			iPremiereCaseVide = c.numero;
+			return true;
+		} else {
+			return false;
+		}
+	});
+
+	return iPremiereCaseVide;
+}
+
+function attribuerImagesAuxCases() {
 	for (var i=0; i<NOMBRE_CASES; i++) {
 		(function(i) {
 			if (listeCases[i].type === "piece") {
-				listeCases[i].valeur = randomVal(!indexCaseWithout100.has(i));
 				var piece = new Image();
 				switch (listeCases[i].valeur) {
 					case 10:
@@ -172,33 +150,4 @@ function placerPiecesAleatoirement() {
 			}
 		})(i);
 	}
-}
-
-function placementAleatoireDesPieces() {
-	var pieces = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
-				20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
-				30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-				50, 50, 50, 50, 50,
-				100];
-
-	//var 
-	var randomCase = Math.floor(Math.random() * (pieces.length-1));
-}
-
-function demarrerPartie() {
-	creerPlateau(); // creation du plateau de jeu
-	placerPiecesAleatoirement(); // placement de piece de façon aléatoire sur plateau
-}
-
-function rejouerPartie() {
-	plateau.empty();
-    demarrerPartie();
-    $(".popup").remove();
-}
-
-function quitterPartie() {
-	plateau.empty();
-    $(".popup").remove();
-    $("#jeu").hide();
-    $("#menu").show(100);
 }
