@@ -37,4 +37,5 @@ var listeCases = [], // Contient un tableau avec la liste des cases
 	clicAutorise = false, // variable définissant si oui ou non le clic est autorisé
 	modeJeu,
 	finJeuPopup = $("#finJeuPopup"),
-	materializeBtn = '<button class="btn"/>';
+	materializeBtn = '<button class="btn"/>',
+	theme = 'pirate'; // theme par defaut

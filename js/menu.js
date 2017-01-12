@@ -1,18 +1,18 @@
 $(function() {
 	// déclaration des variables et création des éléments
 	var	contenant = $('#menu'),
-		titreJeu = $('<h2/>'),
 		boutonJouerSeul = $(materializeBtn),
 		boutonJouerADeux = $(materializeBtn),
+		boutonChangerTheme = $(materializeBtn),
 		contenantBoutons = $('<div/>');
 
 	// réinitialiser le contenu
 	contenant.empty();
 
 	// modification des éléments
-	titreJeu.html('Tresaure hunt');
 	boutonJouerSeul.html('Jouer seul');
 	boutonJouerADeux.html('Jouer à deux');
+	boutonChangerTheme.html('Changer theme');
 
 	// écouter les événements
 	boutonJouerSeul.click(function () {
@@ -21,11 +21,14 @@ $(function() {
 	boutonJouerADeux.click(function () {
 		jouer(0);
 	});
+	boutonChangerTheme.click(function () {
+		changerTheme();
+	});
 
 	// insertion des éléments
-	contenant.append(titreJeu);
 	contenantBoutons.append(boutonJouerSeul);
 	contenantBoutons.append(boutonJouerADeux);
+	contenantBoutons.append(boutonChangerTheme);
 	contenant.append(contenantBoutons);
 
 	function jouerSeul() {

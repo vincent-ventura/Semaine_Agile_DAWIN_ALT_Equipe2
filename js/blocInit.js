@@ -10,8 +10,8 @@
 	isJ1Turn = true; // Le joueur 1 est le premier à jouer
 
 	// Inserer les images et noms des joueurs
-	$("#imgJ1").attr("src", "./img/pirate.png");
-	$("#imgJ2").attr("src", "./img/pieuvre.png");
+	$("#imgJ1").attr("src", './img/' + theme + '/joueur1.png');
+	$("#imgJ2").attr("src", './img/' + theme + '/joueur2.png');
 	$("#nomJ1").text(joueur1.nom);
 	$("#nomJ2").text(joueur2.nom);
 
@@ -123,29 +123,29 @@ function attribuerImagesAuxCases() {
 				var piece = new Image();
 				switch (listeCases[i].valeur) {
 					case 10:
-						piece.src = './img/10.png';
+						piece.src = './img/' + theme + '/10.png';
 						break;
 					case 20:
-						piece.src = './img/20.png';
+						piece.src = './img/' + theme + '/20.png';
 						break;
 					case 30:
-						piece.src = './img/30.png';
+						piece.src = './img/' + theme + '/30.png';
 						break;
 					case 40:
-						piece.src = './img/40.png';
+						piece.src = './img/' + theme + '/40.png';
 						break;
 					case 50:
-						piece.src = './img/50.png';
+						piece.src = './img/' + theme + '/50.png';
 						break;
 					case 100:
-						piece.src = './img/100.png';
+						piece.src = './img/' + theme + '/100.png';
 						break;
 				}
 				$("li#"+i).append(piece);
 			}
 			if (listeCases[i].type === "joueur"){
 				var joueur = new Image();
-				joueur.src = "./img/pirate.png";
+				joueur.src = './img/' + theme + '/joueur1.png';
 				$("li#"+i).append(joueur);
 			}
 		})(i);

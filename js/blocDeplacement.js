@@ -153,10 +153,10 @@ function deplacerJoueurs(iCase) {
 		listeCases[iJoueurs].type = 'joueur';
 		
 		if(isJ1Turn) {
-			imgCaseDest.attr("src", "./img/pieuvre.png");
+			imgCaseDest.attr("src", './img/' + theme + '/joueur2.png');
 			mettreAJourScore(joueur1);
 		} else {
-			imgCaseDest.attr("src", "./img/pirate.png");
+			imgCaseDest.attr("src", './img/' + theme + '/joueur1.png');
 			mettreAJourScore(joueur2);
 		}
 	});

@@ -1,5 +1,6 @@
 body
 {
+  background-image: url('../img/pirate/background.jpg');
   margin-left: auto;
   margin-right: auto;
 }
@@ -10,12 +11,13 @@ header {
   text-align: center;
 }
 
-h1 {
+h3 {
   color: #fff;
   padding: 20px;
   font-size: 2em;
   font-weight: bold;
 	font-family: sans-serif;
+  margin: 0 !important;
 }
 
 #plateau {
@@ -23,16 +25,10 @@ h1 {
   height: 448px;
 	margin: 5px;
   margin-bottom: 20px;
-  /*position: absolute;*/
+  border: 1px solid white;
   border-collapse: 4px outset gray;
   float: left;
   padding-bottom: 7px 0 0 7px;
-}
-
-#plateau li {
-  width: 64;
-  height: 64;
-  color: red;
 }
 
 #plateau .label {
@@ -49,7 +45,7 @@ h1 {
     height: 64px;
     width: 448px;
     position: relative;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(31, 98, 85, 0.5);
     color: #222;
     margin: 0;
     padding: 0;
@@ -98,6 +94,7 @@ h1 {
     position: relative;
     height: 64px;
     width: 64px;
+    border: 1px solid white;
 }
 #plateau ul li:first-child:hover {
     margin-left: 0
@@ -118,21 +115,14 @@ h1 {
     text-align: center;
 }
 
-/*header {
-    padding: 1em;
-    color: white;
-    background-color: black;
-    clear: left;
-    text-align: center;
-}*/
 footer {
-  background: #aaa;
+  background: gray;
   color:white;
   padding: 1em;
   color: white;
   clear: left;
   text-align: center;
-  margin: 5em 0 5em 0;
+  margin: 10em 0 0 0;
 }
 .nav {background:#eee;}
 
@@ -166,17 +156,15 @@ footer {
 }
 
 #menu {
-  width: 600px;
-  height: 500px;
-  margin: auto;
-  background-image: url('../img/pirateBackground.png');
   display: block;
+  margin-top: 14%;
 }
 
 
 #jeu {
   width: 100%;
   margin: auto;
+  display:none;
 }
 
 

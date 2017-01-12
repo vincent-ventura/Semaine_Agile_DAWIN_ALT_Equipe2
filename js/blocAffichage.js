@@ -19,3 +19,11 @@ function creerBoutonQuitter() {
 
     return boutonQuitter;
 }
+
+function changerTheme() {
+    theme = theme === 'pirate' ? 'ange' : 'pirate';
+    console.log(theme);
+    var imageUrl = "./img/" + theme + "/background.jpg";
+    $('body').css("background-image", 'url('+imageUrl+')');
+    console.log($('body').css("background-image"));
+}
