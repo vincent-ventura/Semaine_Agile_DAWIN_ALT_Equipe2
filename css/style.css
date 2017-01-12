@@ -167,7 +167,10 @@ footer {
   display:none;
 }
 
-
+#help{
+        width: 25%;
+        margin: auto;
+}
 
 .col {
   margin-top: 20px;
