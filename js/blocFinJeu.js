@@ -8,16 +8,16 @@ function verifierFinJeu500Points (joueur) {
 function verifFinJeuPlusDeCasesAccessibles (){
 	var caseDispoExiste = false;
 
-    casesAccessiblesJoueurs = determinerCasesAccessiblesJoueur();
+    casesAccessiblesJoueurs = determinerCasesAccessibles(iJoueurs);
 
     if( !casesAccessiblesJoueurs.length ) {
         alert("Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gangé la partie car il ne peut plus jouer !"); 
     }
 }
 
-function determinerCasesAccessiblesJoueur() {
-    var colonneJoueur = listeCases[iJoueurs].positionX / TAILLE_CASE; // 5
-    var ligneJoueur = listeCases[iJoueurs].positionY / TAILLE_CASE; // 1
+function determinerCasesAccessibles(iCase) {
+    var colonneJoueur = listeCases[iCase].positionX / TAILLE_CASE; // 5
+    var ligneJoueur = listeCases[iCase].positionY / TAILLE_CASE; // 1
     var casesAccessiblesJoueurs = [];
 
     for (i=0; i<NOMBRE_CASES_PAR_LIGNE; i++) {

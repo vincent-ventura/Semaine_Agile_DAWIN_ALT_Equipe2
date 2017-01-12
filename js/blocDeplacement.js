@@ -55,9 +55,50 @@ function deplacerIA(etatJeu) {
 }
 
 function choisirCaseIADebutant() {
-	var casesAccessibles = determinerCasesAccessiblesJoueur(),
+	var casesAccessibles = determinerCasesAccessibles(iJoueurs),
 		randomCase = Math.floor(Math.random() * casesAccessibles.length);
 	return casesAccessibles[randomCase];
+}
+
+function choisirCaseIAAvance() {
+	var casesAccessiblesJoueur = determinerCasesAccessibles(iJoueurs),
+		casesAccessiblesCase,
+		caseTrouvee = false,
+		indiceCase;
+
+	while(!caseTrouvee) {
+		var maxValeur = 0;
+		casesAccessiblesJoueur.some(function(iCase) {
+			if (listeCases[iCase].valeur === 100) {
+				indiceCase = iCase;
+				maxValeur = listeCases[iCase].valeur;
+				return true;
+			}
+			else {
+				if (listeCases[iCase].valeur > maxValeur) {
+					indiceCase = iCase;
+					maxValeur = listeCases[iCase].valeur;
+				}
+				return false;
+			}
+		});
+
+		if (maxValeur === 100) {
+			return indiceCase;
+		}
+
+		casesAccessiblesCase = determinerCasesAccessibles(indiceCase);
+		var isCentAround = casesAccessiblesCase.some(function(iCase) {
+			return listeCases[iCase].valeur === 100;
+		});
+
+		if(!isCentAround || casesAccessiblesJoueur.length < 2) {
+			caseTrouvee = true;
+		} else {
+			casesAccessiblesJoueur.slice(indiceCase, 1);
+		}
+	}
+	return indiceCase;
 }
 
 function deplacerJoueurs(iCase) {
