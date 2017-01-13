@@ -16,7 +16,7 @@ function traitementScoreFinal(nomJoueur, score) {
 }
 
 function trierMeilleursScores() {
-	historiqueMeilleursScores = historiqueMeilleursScores.sort(function (a, b) {  return a.valeur - b.valeur;  });
+	historiqueMeilleursScores = historiqueMeilleursScores.sort(function (a, b) {  return b.valeur - a.valeur;  });
 
 	if(historiqueMeilleursScores.length > 5)
 		historiqueMeilleursScores.pop();
