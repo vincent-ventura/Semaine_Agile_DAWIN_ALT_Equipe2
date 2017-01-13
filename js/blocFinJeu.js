@@ -20,9 +20,10 @@ function verifFinJeuPlusDeCasesAccessibles (){
     casesAccessiblesJoueurs = determinerCasesAccessibles(iJoueurs);
 
     if(!casesAccessiblesJoueurs.length) { // si aucunes cases accessibles -> finJeu
-        var contenu = "Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gagné la partie car il ne peut plus jouer !";
+        var gagnant = isJ1Turn ? joueur2 : joueur1;
+        var contenu = "Le joueur " + (isJ1Turn ? gagnant.nom : gagnant.nom) + " a gagné la partie car il ne peut plus jouer !";
         afficherPopupFinJeu(contenu);
-        traitementScoreFinal(joueur.nom, joueur.score);
+        traitementScoreFinal(gagnant.nom, gagnant.score);
     }
 }
 
