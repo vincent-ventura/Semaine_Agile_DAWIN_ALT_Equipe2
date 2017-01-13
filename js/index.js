@@ -10,7 +10,11 @@ $(function () {
 	});	
 
 
+
 	// ajout de listenners sur nos boutons quitter et rejouer
+	$('#meilleursScores').on('click', function(){
+		afficherPopupMeilleursScores();
+	});
 	$("#rejouer").on("click", function () {
 		rejouerPartie();
 	});

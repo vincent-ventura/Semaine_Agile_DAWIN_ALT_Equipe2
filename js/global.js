@@ -92,7 +92,7 @@ function afficherPopupAide() {
         popup = $('<div class="popup"/>'),
 		fermerPopUp = $('<span/>');
 
-    var contenu = "<h5>Aide en ligne<h5>";
+    var contenu = "<h5>Aide en ligne</h5>";
    	fermerPopUp.addClass('close');
 	fermerPopUp.html('&times');
 	fermerPopUp.click(function() {
