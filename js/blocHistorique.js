@@ -1,14 +1,18 @@
 // FICHIER TRAITANT LES FONCTIONS DE L'HISTORIQUE DES SCORE
 
 function traitementScoreFinal(nomJoueur, score) {
-	historiqueMeilleursScores.some(function (meilleurScore) {
-		if(meilleurScore.valeur < score) {
-			historiqueMeilleursScores.push({joueur: nomJoueur, valeur: score});
-			trierMeilleursScores();
-			return true;
-		}
-		return false;
-	});
+	if(historiqueMeilleursScores.length) {
+		historiqueMeilleursScores.some(function (meilleurScore) {
+			if(meilleurScore.valeur < score) {
+				historiqueMeilleursScores.push({joueur: nomJoueur, valeur: score});
+				trierMeilleursScores();
+				return true;
+			}
+			return false;
+		});
+	} else {
+		historiqueMeilleursScores.push({joueur: nomJoueur, valeur: score});
+	}
 }
 
 function trierMeilleursScores() {
