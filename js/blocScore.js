@@ -23,13 +23,20 @@ function scoreJoueurMAJGraphique(j)
 //mettre a jour l'historique des points du joueur dans la partie courante
 function historiqueJoueurMAJGraphique(bonusBool)
 {
+	var ulHistoJoueur = $(isJ1Turn? ".listeP1" : ".listeP2");
 	//actualiser une liste des coups avec en haut le dernier coup
 	//change la couleur en fonction que ce soit un poit standard ou bonus
 	if(bonusBool)
-		$(isJ1Turn? ".listeP1" : ".listeP2").prepend('<li class="bonus"> +'+listeCases[iJoueurs].valeur+" x"+multipleBonus+"</li>");
+		ulHistoJoueur.prepend('<li class="bonus"> +'+listeCases[iJoueurs].valeur+" x"+multipleBonus+"</li>");
 	else
 	{
-		$(isJ1Turn? ".listeP1" : ".listeP2").prepend('<li class="point"> +'+listeCases[iJoueurs].valeur+"</li>");
+		ulHistoJoueur.prepend('<li class="point"> +'+listeCases[iJoueurs].valeur+"</li>");
+	}
+
+	liHistoJoueur = ulHistoJoueur.find('li');
+	console.log(liHistoJoueur.length);
+	if( liHistoJoueur.length > 6 ) { // on garde seulement les 6 derniers points acquis en visuel
+		liHistoJoueur.last().remove();
 	}
 }
 //***** FIN Partie GESTION Partie GRAPHIQUE
