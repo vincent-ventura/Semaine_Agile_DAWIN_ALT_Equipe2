@@ -3,9 +3,8 @@
 function traitementScoreFinal(nomJoueur, score) {
 	if(historiqueMeilleursScores.length) {
 		historiqueMeilleursScores.some(function (meilleurScore) {
-			if(meilleurScore.valeur < score) {
+			if(meilleurScore.valeur < score || historiqueMeilleursScores.length < 5 ) {
 				historiqueMeilleursScores.push({joueur: nomJoueur, valeur: score});
-				trierMeilleursScores();
 				return true;
 			}
 			return false;
@@ -13,6 +12,7 @@ function traitementScoreFinal(nomJoueur, score) {
 	} else {
 		historiqueMeilleursScores.push({joueur: nomJoueur, valeur: score});
 	}
+	trierMeilleursScores();
 }
 
 function trierMeilleursScores() {
@@ -32,16 +32,17 @@ function afficherPopupMeilleursScores() {
 
     var contenu = $("<h5>Meilleurs Scores</h5>");
     var ul = $("<ul/>");
+    var meilleursScores;
     if (historiqueMeilleursScores.length) {
 	    historiqueMeilleursScores.forEach(function (meilleurScore){
 	    	li = $("<li/>");
 	    	li.append('<h5>' + meilleurScore.joueur + " - " + meilleurScore.valeur +' points</h5>');
 	   		ul.append(li);
 	    });
-	    contenu.append(ul);
+	    meilleursScores = ul;
 	}
 	else {
-		contenu.append("<h5>Pas de meilleurs scores disponibles</h5>");
+		meilleursScores = ("<h5>Pas de meilleurs scores disponibles</h5>");
 	}
     
    	fermerPopUp.addClass('close');
@@ -52,6 +53,7 @@ function afficherPopupMeilleursScores() {
    
    	popupContent.append(fermerPopUp);
     popupContent.append(contenu);
+    popupContent.append(meilleursScores);
 
     popup.append(popupContent);
     $("body").append(popup);
