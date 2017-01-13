@@ -101,12 +101,13 @@ function choisirCaseIADebutant() {
 function choisirCaseIAAvance() {
 	var casesAccessiblesJoueur = determinerCasesAccessibles(iJoueurs), // cases situées sur la meme ligne / colonne que le joueur
 		caseTrouvee = false, // in
-		indiceCase;
+		indiceCase,
+		indiceCaseAccessible;
 
 	while(!caseTrouvee) {
 		// on cherche d'abord la plus grande valeur située sur les cases accessibles par le joueur
 		var maxValeur = 0;
-		casesAccessiblesJoueur.some(function(iCase) {
+		casesAccessiblesJoueur.some(function(iCase, iCaseAccessible) {
 			// dans le cas où la valeur 100 est acessible on coupe cours au parcours des cases accessible
 			if (listeCases[iCase].valeur === 100) {
 				indiceCase = iCase;
@@ -117,6 +118,7 @@ function choisirCaseIAAvance() {
 			else {
 				if (listeCases[iCase].valeur > maxValeur) {
 					indiceCase = iCase;
+					indiceCaseAccessible = iCaseAccessible;
 					maxValeur = listeCases[iCase].valeur;
 				}
 				return false;
@@ -138,7 +140,7 @@ function choisirCaseIAAvance() {
 		if(!isCentAround) {
 			caseTrouvee = true; // on a trouve la case que l'IA cherchait et on peut terminer notre boucle
 		} else {
-			casesAccessiblesJoueur.slice(indiceCase, 1); // on recommence la recherche en supprimant l'option courante des possibilités de déplacement
+			casesAccessiblesJoueur.splice(indiceCaseAccessible, 1); // on recommence la recherche en supprimant l'option courante des possibilités de déplacement
 		}
 	}
 	return indiceCase;
