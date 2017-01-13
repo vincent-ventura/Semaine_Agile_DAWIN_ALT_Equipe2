@@ -1,181 +1,25 @@
-// On crée les variables pour le canvas
-var canvas = document.getElementById('plateau');
-var context = canvas.getContext('2d');
-
-// On définit des variables
-var largeurPlateau = canvas.width, // Largeur max = largeur du canvas
-	hauteurPlateau = canvas.height, // Hauteur max = hauteur du canvas
-	nombreCases = 49, // Le nombre de cases total est égal aux nombres de cases sur la largeur multipliés par le nombre de cases sur la hauteur
-	nombreCasesParLigne = 7, // Nombre de case pour chaque ligne du plateau
-	tailleCase = largeurPlateau/nombreCasesParLigne, // Taille d'une case du plateau
-	listeCases = []; // Contient un tableau avec la liste des cases
-
-// On créé une fonction pour crée chaque case du plateau
-function creerPlateau() {
-	context.fillStyle = "white"; // Le canvas a un fond blanc
-	context.fillRect(0, 0, largeurPlateau, hauteurPlateau); // On utilise la totalité du canvas pour créer nos cases
-
-	var colonne = 0,
-			ligne = 0; // On utilise ces variables pour changer les colonnes et lignes des différentes cases crées, on commence à 0 x 0 pour la première case
-
-	// Pour chaque case du plateau :
-	for (var i = 0; i < nombreCases; i++) {
-		// On crée un carré de bordure noire de taille tailleCase*tailleCase
-		context.strokeStyle = 'grey';
-		context.strokeRect(tailleCase * colonne, tailleCase * ligne, tailleCase, tailleCase);
-
-		// On ajoute un objet à chaque case avec un type et les positions
-		listeCases[i] = {
-			numero: i,
-			type: "casevide",
-			positionX: tailleCase * colonne + 1, //la pièce a une diagonale legerement plus petit que la case
-			positionY: tailleCase * ligne + 1,
-			valeur: 0
-		};
-
-		// Après avoir créé la case, on passe à la colonne suivante
-		colonne++;
-
-		// Si on arrive à la fin de la ligne, on passe à la ligne suivante
-		if (colonne === nombreCasesParLigne) {
-			colonne = 0;
-			ligne++;
+$(function () {
+	// on commence le jeu en placant un listener sur les clics effectués sur le plateau
+	plateau.on('click', function (e) {
+		if(clicAutorise) {
+			clicAutorise = false; // on désactive le clic pendant le traitement du tour
+			var x = e.pageX - this.offsetLeft;
+			var y = e.pageY - this.offsetTop;
+			jouerTour(positionClic(x, y));
 		}
-	}
-}
-
-creerPlateau();
-
-var nombreObstacles = listeCases.length-1, // On veut 48 obstacles sur le plateau
-	listearmes = [];
-
-// Création de la fonction qui retourne un nombre aléatoire entre 0 et 48
-function randomnumber() {
-	var rand = Math.floor(Math.random() * (nombreCases - 1));
-	return rand;
-}
+	});	
 
 
-//valeur limite en quantité des valeurs des pieces
-const limite50Qte = 5;
-const	limite10Qte = 14;
-const	limite20Qte = 14;
-const	limite30Qte = 14;
-//compteur pour chaque valeur
-var cpt50 = 0,
-		cpt10 = 0,
-		cpt20 = 0,
-		cpt30 = 0;
+	// ajout de listenners sur nos boutons quitter et rejouer
+	$("#rejouer").on("click", function () {
+		rejouerPartie();
+	});
 
-// tableau contenant les valeurs des pieces a valoriser
-var valArray = [100, 10, 20, 30, 50];
-var valArrayWithout100 = [10, 20, 30, 50];
-//ensemble contenant les valeurs des pieces a valoriser
-var valSet = new Set(valArray);
-//Fonction renvoyant aleatoire les valeurs des pieces
-function randomVal(include100)
-{
-	const tabToHandle = include100?this.valArray:this.valArrayWithout100;
-	const rand = tabToHandle[Math.floor(Math.random()*tabToHandle.length)];
-	if (rand === 100 )
-	{
-		this.valSet.delete(100);
-		updateTab(tabToHandle);
-		return 100;
-	}
-	//PE refactoriser cette partie ?
-	if( rand === 50 && cpt50 < limite50Qte)
-	{
-		cpt50++;
-		if( cpt50 === limite50Qte )
-		{
-			this.valSet.delete(50);
-			updateTab(tabToHandle);
-		}
-	}
-	if( rand === 10 && cpt10 < limite10Qte)
-	{
-		cpt10++;
-		if( cpt10 === limite10Qte )
-		{
-			this.valSet.delete(10);
-			updateTab(tabToHandle);
-		}
-	}
-	if( rand === 20 && cpt20 < limite20Qte)
-	{
-		cpt20++;
-		if( cpt20 === limite20Qte )
-		{
-			this.valSet.delete(20);
-			updateTab(tabToHandle);
-		}
-	}
-	if( rand === 30 && cpt30 < limite30Qte)
-	{
-		cpt30++;
-		if( cpt30 === limite30Qte )
-		{
-			this.valSet.delete(30);
-			updateTab(tabToHandle);
-		}
-	}
-	eval(rand);
-	return rand;
-}
-//fonction de MAJ des tableaux de valeurs
-function updateTab(tab)
-{
-	if( tab === this.valArray)
-		this.valArray = Array.from(this.valSet);
-	if( tab === this.valArrayWithout100)
-		this.valArrayWithout100 = Array.from(this.valSet);
-}
+	$("#quitter").on("click", function () {
+		quitterPartie();
+	});
 
-
-//c'est quoi cette partie de code qui pue !!! Je pense pouvoir le refactoriser
-//sans rétrograder le code. A voir avec les collegues demain.
-for (var i = 0; i < nombreObstacles; i++) {
-	var numerocasealeatoire = randomnumber();
-
-	if (listeCases[numerocasealeatoire].type !== "casevide") {
-		i--;
-	} else {
-		listeCases[numerocasealeatoire].type = "piece";
-		listeCases[nombreObstacles].type = "piece";
-	}
-}
-///
-
-listeCases[24].type = "joueur";
-
-//ensemble de valeurs de cases ne devant pas contenir la valeur 100
-// numeros de cases sur la ligne du milieu et la colonne du milieu
-const indexLigneDuMilieu = [21, 22, 23, 25, 26, 27];
-const indexColonneDuMilieu = [3, 10, 17, 31, 38, 45];
-const indexCaseWithout100 = new Set(indexColonneDuMilieu.concat(indexLigneDuMilieu));
-
-// Il y a 49 cases, on vérifie l'type de chacune et si c'est un piece, on colore la case en gris
-//var total = 0;
-for (var i = 0; i < nombreCases; i++) {
-	(function(i) {
-		if (listeCases[i].type === "piece") {
-			listeCases[i].valeur = randomVal(!indexCaseWithout100.has(i));
-			//console.log(listeCases[i].valeur);
-			//total++;
-			var canvas = new Image();
-			canvas.src = './img/10.png';
-			canvas.addEventListener('load', function() {
-				context.drawImage(canvas, listeCases[i].positionX, listeCases[i].positionY, 58, 58);
-			}, false);
-		}
-		if (listeCases[i].type === "joueur"){
-			var canvas = new Image();
-			canvas.src = "http://zupimages.net/up/15/31/m3d1.png";
-			canvas.addEventListener('load', function() {
-			context.drawImage(canvas, listeCases[i].positionX, listeCases[i].positionY);
-			}, false);
-		}
-	})(i);
-}
-//console.log(total);
+	$("#aide").on("click", function () {
+		afficherPopupAide();
+	});
+});

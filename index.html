@@ -1,21 +1,90 @@
+<!doctype html>
+<html lang="fr">
 <head>
-  <link href="./css/style.css" type="text/css" rel="stylesheet"/>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link href="./css/style.css" media="screen" type="text/css" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  	<script src="./js/jquery.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Jeu de plateau - JavaScript</h1>
-  </header>
+	<header>
+		<h3>Jeu de plateau - Equipe 2</h3>
+	</header>
 
-  <div id="container">
-    <canvas id="plateau" width="420" height="420"></canvas>
-    <script src="./js/index.js"></script>
-  </div>
+	<div class="row">
+		<div id="menu" class="col l12 m12 s12"></div>
+	</div>
 
-<p id="rcorners3">Rounded corners!</p>
-    <div id="highScores">
+	<div id="jeu" class="row" style="display:none;">
+		<div class="col l8 offset-l2 m8 offset-m2 s8 offset-s2">
+			<div class="col l2 m2">
+				<div class="card"><!-- red darken-4 light-blue darken-3 -->
+					<div class="card-content white-text">
+						<img id="imgJ1" src="./img/default-user-image.png" width="70" height="70"/>
+						<p id="nomJ1"></p>
+						<h3 id="scoreJ1">0</h3>
+						<span>Derniers points : </span>
+						<div class="histJ1">
+	            			<ul class="listeP1"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
 
-  </div>
 
+			<div class="col s3 m3">
+				<div id="plateau"></div>
+			</div>
+			<div class="col l2 m2">
+
+				<div class="card">
+					<div class="card-content white-text">
+						<img id="imgJ2" src="./img/default-user-image.png" width="70" height="70"/>
+						<p id="nomJ2"></p>
+						<h3 id="scoreJ2">0</h3>
+						<span>Derniers points : </span>
+						<div class="histJ2">
+	            			<ul class="listeP2"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="highScores" style="display:none;"></div>
+
+			<div class="col s12 m12 center">
+				<button id="rejouer" class="btn">Rejouer</button>
+				<button id="quitter" class="btn">Quitter</button>
+				<button id="aide" class="btn">Aidez moi !</button>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- <div id="help">
+		<center><h4>Aide Utilisateur</h4></center>
+		<center><h5>But: </h5></center>
+		<p> Le but est d’acquérir le plus de connaissance possible au travers des bescherelles disposés sur la grille. Le premier spécimen qui ramasse plus de 500 connaissances gagne et la partie est terminée.</p>
+		<center><h5>Comment Jouer ?</h5></center>
+		<p> Honneur aux femmes, Nabilla commence au centre de la grille. Nous avons 5 types de bescherelle, 1 qui vaut 100 connaissances, 14 qui valent 10 connaissances, 14 qui valent 20 connaissances, 14 qui valent 30 connaissances et 5 qui valent 50 connaissances.
+		Ramassez donc les meilleurs bescherelles pour distancer votre adversaire ! Mais attention des combos sont possibles ! Ramassez cinq mêmes types de bescherelles d’affilé pour obtenir un bonus délirant ! Pour vous déplacer il vous suffit de cliquer sur le bescherelle que vous souhaitez ramasser, mais le déplacement est uniquement autorisé en ligne ou en colonne !
+		</p>
+		<center><h5>Affichage du score: </h5></center>
+		<p>L’historique des scores est affiché en bas du menu ainsi que sous le plateau de jeu lorsque la partie est lancée. Le score de chaque joueur au cours de la partie est indiqué à gauche et à droite de la grille. 
+		</p>
+	</div> -->
+
+	<footer>Equipe2 : Vincent C. | Valentin F. | Matthias R. | Hugo U. | Vincent V.</footer>
+
+	<script src="./js/menu.js"></script>
+	<script src="./js/global.js"></script>
+	<script src="./js/blocInit.js"></script>
+	<script src="./js/blocDeplacement.js"></script>
+	<script src="./js/blocScore.js"></script>
+	<script src="./js/blocFinJeu.js"></script>
+	<script src="./js/blocHistorique.js"></script>
+  	<script src="./js/index.js"></script>
 </body>
 
-<footer>Equipe2 : Vincent C. | Valentin F. | Hugo U. | Vincent V. | Matthias R.</footer>
+</html>
