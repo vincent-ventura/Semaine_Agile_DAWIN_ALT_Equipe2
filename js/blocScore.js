@@ -1,7 +1,7 @@
 //fonction CHEF dORCHESTRE de MAJ des scores
 function mettreAJourScore(joueur) {
 	//gerer le comptage des points et bonus
-	handleScoreAndBonus(joueur);
+	gererScoreEtBonus(joueur);
 	// vérifier si le joueur courant a dépassé les 500 points
 	verifierFinJeu500Points(joueur);
 }
@@ -34,53 +34,9 @@ function historiqueJoueurMAJGraphique(bonusBool)
 	}
 
 	liHistoJoueur = ulHistoJoueur.find('li');
-	if( liHistoJoueur.length > 6 ) { // on garde seulement les 6 derniers points acquis en visuel
+	if(liHistoJoueur.length > 6) { // on garde seulement les 6 derniers points acquis en visuel
 		liHistoJoueur.last().remove();
 	}
-}
-//***** FIN Partie GESTION Partie GRAPHIQUE
-
-//***** DEBUT Partie GESTION Partie LOGIQUE
-function scoreJoueurMAJLogique(j, isBonus)
-{
-	if(listeCases[iJoueurs].valeur !== 0)
-		j.historiqueScore.push(listeCases[iJoueurs].valeur); // sauvegarder le point dans l'historique du joueur
-	if (isBonus)
-	{
-		j.score += listeCases[iJoueurs].valeur*multipleBonus;
-	}
-	else
-	{
-		j.score += listeCases[iJoueurs].valeur; // modifier le score du joueur avec la nouvelle valeur
-	}
-}
-
-// incrementer les seuils de declenchements des bonus pour chaque joueur
-function incrementerSeuilDeclenchementJ(j)
-{
-	isJ1Turn? j.seuilDeclenchementBonus++ : j.seuilDeclenchementBonus++;
-}
-
-//determiner s'il y a des points bonus ou pas en cours de jeu
-const cinqPiecesMemeValeurALaSuite = 4;
-function hasBonus(j)
-{
-	const longueurActuelleScoring = j.historiqueScore.length;
-	const predicatBonus = listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-4]
-								&&			listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-3]
-								&&			listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-2]
-								&&			listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-1];
-
-	if (listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-1])
-		incrementerSeuilDeclenchementJ(j);
-	const predicatBonusGlobal = longueurActuelleScoring > 3 && predicatBonus && j.seuilDeclenchementBonus === cinqPiecesMemeValeurALaSuite;
-	if (predicatBonusGlobal)
-	{
-		j.seuilDeclenchementBonus = 0;
-		j.historiqueScore = [];
-		return true;
-	}
-	return false;
 }
 
 function initScores() {
@@ -90,41 +46,30 @@ function initScores() {
 	$("ul.listeP2").empty();
 }
 
-function enregistrerMeilleurScorePartieEnCours()
-{
-	//joueur1.score > joueur2.score? jeu.highScores.push(joueur1.score) : jeu.highScores.push(joueur2.score);
-	joueur1.score > joueur2.score? jeu.highScores = joueur1.score.toString() : jeu.highScores = joueur2.score.toString();
-	return jeu.highScores;
-}
 
-function enregistrerMeilleurScoreEnLocal()
-{
-	//localStorage.setItem('myHighScoreObject', JSON.stringify(enregistrerMeilleurScorePartieEnCours()));
-	++HIGH_SCORE_DIM;
-	localStorage.setItem('myHighScoreObject'+HIGH_SCORE_DIM, enregistrerMeilleurScorePartieEnCours());
-}
+function gererScoreEtBonus(joueur) {
+	var isBonus = true,
+		valeurCaseDeplacement = listeCases[iJoueurs].valeur;
 
-function accederMeilleurScoreEnLocal()
-{
-	//return JSON.parse(localStorage.getItem('myHighScoreObject'));
-	return localStorage.getItem('myHighScoreObject'+HIGH_SCORE_DIM);
-}
-//***** FIN Partie GESTION Partie LOGIQUE
+	joueur.historiqueScore.push( valeurCaseDeplacement );
+	var tailleHistoriqueScore = joueur.historiqueScore.length;
+	
+	if ( tailleHistoriqueScore > 4 ) {
+		for (var i=1; i<6; i++) {
+			if( joueur.historiqueScore[tailleHistoriqueScore-i] !== valeurCaseDeplacement )
+				isBonus = false;
+		}
+	} else {
+		isBonus = false;
+	}
 
+	// on incremente le score du joueur
+	joueur.score += isBonus ? 3*valeurCaseDeplacement : valeurCaseDeplacement;
+	
+	// on reinitialise l'historique dans si le joueur a eu un bonus
+	if(isBonus)
+		joueur.historiqueScore = [];
 
-//gestion globale des bonus: fonction appelee dans la fontion principale
-// (voir en debut de page)
-//disons que l'on multiplie X3 la valeur du dernier jeton
-const multipleBonus = 3;
-function handleScoreAndBonus(j)
-{
-	//le joueur courant a t il un bonus ?
-	const isBonus = hasBonus(j);
-	//partie logique
-	//mettre a jour le score dans la logique (persistence) joueur
-	scoreJoueurMAJLogique(j, isBonus);
-	//partie graphique
-	// mettre jour l'affichage du score courant du joueur et historique
-	scoreJoueurMAJGraphique(j)
+	scoreJoueurMAJGraphique(joueur);
 	historiqueJoueurMAJGraphique(isBonus);
 }

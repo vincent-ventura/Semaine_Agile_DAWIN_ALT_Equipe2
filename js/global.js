@@ -6,7 +6,6 @@
 function Joueur(nom, type) {
 	this.score = 0;
 	this.nom = nom;
-	this.seuilDeclenchementBonus = 0;
 	this.historiqueScore = [];
 	this.type = type;
 }
@@ -41,7 +40,8 @@ var listeCases = [], // Contient un tableau avec la liste des cases
 	finJeuPopup = $("#finJeuPopup"), // popup de fin de jeu
 	materializeBtn = '<button class="btn"/>',
 	theme = 'pirate', // theme par defaut
-	historiqueMeilleursScores = []; // tableau sauvegardant les 5 meilleurs scores {joueur: xx, valeur: xxx}
+	historiqueMeilleursScores = [], // tableau sauvegardant les 5 meilleurs scores {joueur: xx, valeur: xxx}
+	multipleBonus = 3; // multiplicateur de points lors des bonus
 
 /*
  * Changement du theme du jeu (les anges / pirates)
