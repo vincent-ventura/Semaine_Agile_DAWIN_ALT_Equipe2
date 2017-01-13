@@ -36,12 +36,13 @@ var listeCases = [], // Contient un tableau avec la liste des cases
 	joueur2, // on déclare le joueur2
 	isJ1Turn, // on déclare une variable indiquant à qui est le tour : true -> joueur1, false -> joueur2
 	clicAutorise = false, // variable définissant si oui ou non le clic est autorisé
-	modeJeu, // mode de jeu 
+	modeJeu, // mode de jeu
 			// 0: 1C1, 1:Debutant, 2:Avancé, 3:Expert
 	finJeuPopup = $("#finJeuPopup"), // popup de fin de jeu
 	materializeBtn = '<button class="btn"/>',
 	theme = 'pirate', // theme par defaut
-	historiqueMeilleursScores = []; // tableau sauvegardant les 5 meilleurs scores
+	historiqueMeilleursScores = [], // tableau sauvegardant les 5 meilleurs scores
+	jeu; //conteneu des scores partie courante
 
 /*
  * Changement du theme du jeu (les anges / pirates)
@@ -60,7 +61,7 @@ function changerTheme() {
  */
 function creerBoutonRejouer() {
     var boutonRejouer = $(materializeBtn);
-    boutonRejouer.html("Rejouer");    
+    boutonRejouer.html("Rejouer");
 
 	boutonRejouer.click(function () {
         rejouerPartie();
@@ -98,7 +99,7 @@ function afficherPopupAide() {
 	fermerPopUp.click(function() {
 		popup.remove();
 	});
-   
+
    	popupContent.append(fermerPopUp);
     popupContent.append(contenu);
 

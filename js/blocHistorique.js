@@ -35,13 +35,13 @@ function afficherPopupMeilleursScores() {
     if (historiqueMeilleursScores.length) {
 	    historiqueMeilleursScores.forEach(function (meilleurScore){
 	    	li = $("<li/>");
-	    	li.append(meilleurScore.joueur + " : " + meilleurScore.valeur);
+	    	li.append('<h5>' + meilleurScore.joueur + " - " + meilleurScore.valeur +' points</h5>');
 	   		ul.append(li);
 	    });
 	    contenu.append(ul);
 	}
 	else {
-		contenu.append("<p>Pas de meilleurs scores disponibles</p>");
+		contenu.append("<h5>Pas de meilleurs scores disponibles</h5>");
 	}
     
    	fermerPopUp.addClass('close');

@@ -13,7 +13,6 @@ function mettreAJourScore(joueur) {
 */
 
 
-
 //***** DEBUT Partie GESTION Partie GRAPHIQUE
 function scoreJoueurMAJGraphique(j)
 {
@@ -81,6 +80,26 @@ function initScores() {
 	$("#scoreJ2").text(0);
 	$("ul.listeP1").empty();
 	$("ul.listeP2").empty();
+}
+
+function enregistrerMeilleurScorePartieEnCours()
+{
+	//joueur1.score > joueur2.score? jeu.highScores.push(joueur1.score) : jeu.highScores.push(joueur2.score);
+	joueur1.score > joueur2.score? jeu.highScores = joueur1.score.toString() : jeu.highScores = joueur2.score.toString();
+	return jeu.highScores;
+}
+
+function enregistrerMeilleurScoreEnLocal()
+{
+	//localStorage.setItem('myHighScoreObject', JSON.stringify(enregistrerMeilleurScorePartieEnCours()));
+	++HIGH_SCORE_DIM;
+	localStorage.setItem('myHighScoreObject'+HIGH_SCORE_DIM, enregistrerMeilleurScorePartieEnCours());
+}
+
+function accederMeilleurScoreEnLocal()
+{
+	//return JSON.parse(localStorage.getItem('myHighScoreObject'));
+	return localStorage.getItem('myHighScoreObject'+HIGH_SCORE_DIM);
 }
 //***** FIN Partie GESTION Partie LOGIQUE
 

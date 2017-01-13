@@ -27,7 +27,7 @@
  }
 
 /*
- * Création du plateau de jeu (49 cases) 
+ * Création du plateau de jeu (49 cases)
  */
 function creerPlateau() {
 	initialiserJoueurs();
@@ -43,9 +43,9 @@ function creerPlateau() {
 
 			// on ajoute la case courante à notre liste de cases
 			listeCases[i] = new Case(
-				i, 
-				i !== iJoueurs ? 'piece' : 'joueur', 
-				TAILLE_CASE*colonne, 
+				i,
+				i !== iJoueurs ? 'piece' : 'joueur',
+				TAILLE_CASE*colonne,
 				TAILLE_CASE*ligne
 			);
 		}
@@ -94,9 +94,9 @@ function rejouerPartie() {
 
 function quitterPartie() {
 	plateau.empty();
-    $(".popup").remove();
-    $("#jeu").hide();
-    $("#menu").show(100);
+  $(".popup").remove();
+  $("#jeu").hide();
+  $("#menu").show(100);
 }
 
 /*
