@@ -92,7 +92,18 @@ function afficherPopupAide() {
         popup = $('<div class="popup"/>'),
 		fermerPopUp = $('<span/>');
 
-    var contenu = "<h5>Aide en ligne</h5>";
+    var aideEnLigne = "<div id=\"help\">\
+		<center><h4>Aide Utilisateur</h4></center>\
+		<center><h5>But: </h5></center>\
+		<p> Le but est d\’acquérir le plus de connaissance possible au travers des bescherelles disposés sur la grille. Le premier spécimen qui ramasse plus de 500 connaissances gagne et la partie est terminée.</p>\
+		<center><h5>Comment Jouer ?</h5></center>\
+		<p> Honneur aux femmes, Nabilla commence au centre de la grille. Nous avons 5 types de bescherelle, 1 qui vaut 100 connaissances, 14 qui valent 10 connaissances, 14 qui valent 20 connaissances, 14 qui valent 30 connaissances et 5 qui valent 50 connaissances.\
+		Ramassez donc les meilleurs bescherelles pour distancer votre adversaire ! Mais attention des combos sont possibles ! Ramassez cinq mêmes types de bescherelles d\’affilé pour obtenir un bonus délirant ! Pour vous déplacer il vous suffit de cliquer sur le bescherelle que vous souhaitez ramasser, mais le déplacement est uniquement autorisé en ligne ou en colonne !\
+		</p>\
+		<center><h5>Affichage du score: </h5></center>\
+		<p>L\’historique des scores est affiché en bas du menu ainsi que sous le plateau de jeu lorsque la partie est lancée. Le score de chaque joueur au cours de la partie est indiqué à gauche et à droite de la grille.\
+		</p>\
+	</div>";
    	fermerPopUp.addClass('close');
 	fermerPopUp.html('&times');
 	fermerPopUp.click(function() {
@@ -100,7 +111,7 @@ function afficherPopupAide() {
 	});
 
    	popupContent.append(fermerPopUp);
-    popupContent.append(contenu);
+    popupContent.append(aideEnLigne);
 
     popup.append(popupContent);
     $("body").append(popup);

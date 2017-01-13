@@ -163,7 +163,7 @@ footer {
 }
 
 #help{
-        width: 25%;
+        width: 90%;
         margin: auto;
 }
 
@@ -324,4 +324,8 @@ h5 {
 li.historique
 {
   text-align: center;
+}
+
+#help p {
+  text-align: justify !important;
 }

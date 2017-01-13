@@ -34,7 +34,6 @@ function historiqueJoueurMAJGraphique(bonusBool)
 	}
 
 	liHistoJoueur = ulHistoJoueur.find('li');
-	console.log(liHistoJoueur.length);
 	if( liHistoJoueur.length > 6 ) { // on garde seulement les 6 derniers points acquis en visuel
 		liHistoJoueur.last().remove();
 	}
@@ -63,7 +62,7 @@ function incrementerSeuilDeclenchementJ(j)
 }
 
 //determiner s'il y a des points bonus ou pas en cours de jeu
-const cinqPiecesMemeValeurALaSuite = 5;
+const cinqPiecesMemeValeurALaSuite = 4;
 function hasBonus(j)
 {
 	const longueurActuelleScoring = j.historiqueScore.length;
@@ -71,7 +70,9 @@ function hasBonus(j)
 								&&			listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-3]
 								&&			listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-2]
 								&&			listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-1];
-	incrementerSeuilDeclenchementJ(j);
+
+	if (listeCases[iJoueurs].valeur === j.historiqueScore[longueurActuelleScoring-1])
+		incrementerSeuilDeclenchementJ(j);
 	const predicatBonusGlobal = longueurActuelleScoring > 3 && predicatBonus && j.seuilDeclenchementBonus === cinqPiecesMemeValeurALaSuite;
 	if (predicatBonusGlobal)
 	{
