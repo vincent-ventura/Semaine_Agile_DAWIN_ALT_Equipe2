@@ -1,3 +1,4 @@
+// FICHIER TRAITANT LES FONCTIONS DE L'HISTORIQUE DES SCORE
 // rendu graphique de l'historique meilleurs scores
 function historiquePartieMAJGraphique()
 {

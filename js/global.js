@@ -53,8 +53,8 @@ var listeCases = [], // Contient un tableau avec la liste des cases
 	finJeuPopup = $("#finJeuPopup"), // popup de fin de jeu
 	materializeBtn = '<button class="btn"/>',
 	theme = 'pirate', // theme par defaut
+	historiqueMeilleursScores = [], // tableau sauvegardant les 5 meilleurs scores
 	jeu; //conteneu des scores partie courante
-
 
 /*
  * Changement du theme du jeu (les anges / pirates)
