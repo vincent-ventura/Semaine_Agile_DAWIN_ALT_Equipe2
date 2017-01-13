@@ -5,7 +5,9 @@
  */
 function verifierFinJeu500Points (joueur) {
 	if(joueur.score > 500) { // si 500 points depassés -> finJeu
-        var contenu = "Le joueur " + joueur.nom + " a gangé la partie avec " + joueur.score + " points !";
+				enregistrerMeilleurScoreEnLocal();
+				historiquePartieMAJGraphique();
+        var contenu = "Le joueur " + joueur.nom + " a gagné la partie avec " + joueur.score + " points !";
         afficherPopupFinJeu(contenu);
     }
 	else // on change de joueur afin de continuer à jouer
@@ -19,7 +21,9 @@ function verifFinJeuPlusDeCasesAccessibles (){
     casesAccessiblesJoueurs = determinerCasesAccessibles(iJoueurs);
 
     if(!casesAccessiblesJoueurs.length) { // si aucunes cases accessibles -> finJeu
-        var contenu = "Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gangé la partie car il ne peut plus jouer !";
+				enregistrerMeilleurScoreEnLocal();
+				historiquePartieMAJGraphique();
+        var contenu = "Le joueur " + (isJ1Turn ? joueur1.nom : joueur2.nom) + " a gagné la partie car il ne peut plus jouer !";
         afficherPopupFinJeu(contenu);
     }
 }
@@ -35,7 +39,7 @@ function afficherPopupFinJeu(contenu) {
         boutonQuitter = creerBoutonQuitter();
 
     title.html("Fin de la partie");
-    
+
     finJeuPopupContent.append(title);
     finJeuPopupContent.append(contenu);
     finJeuPopupContent.append(boutonRejouer);

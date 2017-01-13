@@ -1,6 +1,17 @@
 // FICHIER REGROUPANT LES VARIABLES TRANSVESES A PLUSIEURS BLOCS AINSI QUE DES CONSTRUCTEURS D OBJETS //
 
 /*
+* Constructeur d'un nouveau jeu :
+* ne sert qu'a sotcker les scores des joueurs courants
+* pour comparer au meilleurs score du storage
+*/
+function Jeu()
+{
+	//this.highScores = [1];
+	this.highScores = "";
+}
+
+/*
  * Constructeur d'un objet Joueur
  */
 function Joueur(nom, type) {
@@ -26,7 +37,8 @@ function Case(numero, type, posX, posY) {
 var   DIMENSION_COTE_PLATEAU = 448, // Largeur max = largeur du canvas
 	  NOMBRE_CASES = 49, // Le nombre de cases total est égal aux nombres de cases sur la largeur multipliés par le nombre de cases sur la hauteur
 	  NOMBRE_CASES_PAR_LIGNE = 7, // Nombre de case pour chaque ligne du plateau
-	  TAILLE_CASE = DIMENSION_COTE_PLATEAU/NOMBRE_CASES_PAR_LIGNE; // Taille d'une case du plateau
+	  TAILLE_CASE = DIMENSION_COTE_PLATEAU/NOMBRE_CASES_PAR_LIGNE, // Taille d'une case du plateau
+		HIGH_SCORE_DIM;
 
 // On initialise nos variables globales
 var listeCases = [], // Contient un tableau avec la liste des cases
@@ -36,11 +48,12 @@ var listeCases = [], // Contient un tableau avec la liste des cases
 	joueur2, // on déclare le joueur2
 	isJ1Turn, // on déclare une variable indiquant à qui est le tour : true -> joueur1, false -> joueur2
 	clicAutorise = false, // variable définissant si oui ou non le clic est autorisé
-	modeJeu, // mode de jeu 
+	modeJeu, // mode de jeu
 			// 0: 1C1, 1:Debutant, 2:Avancé, 3:Expert
 	finJeuPopup = $("#finJeuPopup"), // popup de fin de jeu
 	materializeBtn = '<button class="btn"/>',
-	theme = 'pirate'; // theme par defaut
+	theme = 'pirate', // theme par defaut
+	jeu; //conteneu des scores partie courante
 
 
 /*
@@ -60,7 +73,7 @@ function changerTheme() {
  */
 function creerBoutonRejouer() {
     var boutonRejouer = $(materializeBtn);
-    boutonRejouer.html("Rejouer");    
+    boutonRejouer.html("Rejouer");
 
 	boutonRejouer.click(function () {
         rejouerPartie();
@@ -98,7 +111,7 @@ function afficherPopupAide() {
 	fermerPopUp.click(function() {
 		popup.remove();
 	});
-   
+
    	popupContent.append(fermerPopUp);
     popupContent.append(contenu);
 

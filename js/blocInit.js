@@ -1,5 +1,11 @@
 /*** BLOCINIT : FONCTIONS D'INITIALISATION D'UNE NOUVELLE PARTIE ***/
 
+/** Initialisation de l'entite Jeu **/
+function initJeu()
+{
+  jeu = new Jeu();
+}
+
 /*
  * Réinitialisation des joueurs
  */
@@ -27,7 +33,7 @@
  }
 
 /*
- * Création du plateau de jeu (49 cases) 
+ * Création du plateau de jeu (49 cases)
  */
 function creerPlateau() {
 	initialiserJoueurs();
@@ -43,9 +49,9 @@ function creerPlateau() {
 
 			// on ajoute la case courante à notre liste de cases
 			listeCases[i] = new Case(
-				i, 
-				i !== iJoueurs ? 'piece' : 'joueur', 
-				TAILLE_CASE*colonne, 
+				i,
+				i !== iJoueurs ? 'piece' : 'joueur',
+				TAILLE_CASE*colonne,
 				TAILLE_CASE*ligne
 			);
 		}
@@ -82,6 +88,7 @@ function placementAleatoireDesPieces() {
 }
 
 function demarrerPartie() {
+  initJeu(); //conteneur de meilleurs scores
 	creerPlateau(); // creation du plateau de jeu
 	placementAleatoireDesPieces(); // placement de piece de façon aléatoire sur plateau
 }
@@ -94,9 +101,9 @@ function rejouerPartie() {
 
 function quitterPartie() {
 	plateau.empty();
-    $(".popup").remove();
-    $("#jeu").hide();
-    $("#menu").show(100);
+  $(".popup").remove();
+  $("#jeu").hide();
+  $("#menu").show(100);
 }
 
 /*
